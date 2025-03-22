@@ -1,5 +1,28 @@
-﻿html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+﻿:root {
+    /* Paleta de colores */
+    --color-background: #1a1a1a;
+    --color-surface: #141414;
+    --color-navbar: transparent;
+    --color-accent: #ff4b75;
+    --color-text-primary: #ffffff;
+    --color-text-secondary: #808080;
+    --color-border: #333333;
+    --color-search-bar: #141414;
+    /* Sombras */
+    --shadow-neon: 0 0 10px var(--color-accent);
+    --shadow-inner: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+html, body {
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
 }
 
 h1:focus {
