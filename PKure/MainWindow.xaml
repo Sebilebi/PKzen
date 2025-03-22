@@ -5,8 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PKure"
         xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation/blazor"
+        xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
         mc:Ignorable="d"
+        ResizeMode="CanResize"
         Title="MainWindow" Height="450" Width="800">
+
+    <WindowChrome.WindowChrome>
+        <shell:WindowChrome />
+    </WindowChrome.WindowChrome>
+
     <Grid>
         <wpf:BlazorWebView HostPage="wwwroot\index.html" Services="{DynamicResource services}">
             <wpf:BlazorWebView.RootComponents>

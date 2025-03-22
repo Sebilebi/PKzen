@@ -1,0 +1,145 @@
+﻿
+<div class="navbar" @onmousedown="OnTitleBarClick">
+    <div class="logo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+            <polyline points="2 17 12 22 22 17"></polyline>
+            <polyline points="2 12 12 17 22 12"></polyline>
+        </svg>
+        <span>PKure</span>
+    </div>
+    <div class="search-bar">
+        <div class="search-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+        </div>
+        <input type="text" placeholder="What are you looking for?" @onmousedown:stopPropagation>
+    </div>
+    <div class="actions">
+        <div class="notification" @onmousedown:stopPropagation>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+            <div class="notification-badge"></div>
+        </div>
+        <div class="user-avatar" @onmousedown:stopPropagation>
+            <!-- Contenido del avatar de usuario -->
+        </div>
+        <!-- Controles de ventana -->
+        <div class="window-controls">
+            <button class="minimize" title="Minimizar" @onclick="HandleMinimize" @onmousedown:stopPropagation>–</button>
+            <button class="maximize" title="Maximizar" @onclick="HandleMaximizeRestore" @onmousedown:stopPropagation>□</button>
+            <button class="close" title="Salir" @onclick="HandleClose" @onmousedown:stopPropagation>×</button>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Navbar */
+    .navbar {
+        width: 100%;
+        background-color: var(--color-navbar);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
+    }
+
+    .logo {
+        font-weight: bold;
+        font-size: 24px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .search-bar {
+        background-color: var(--color-search-bar);
+        border-radius: 20px;
+        padding: 8px 15px;
+        display: flex;
+        align-items: center;
+        width: 320px;
+        box-shadow: var(--shadow-inner);
+    }
+
+        .search-bar input {
+            background: transparent;
+            border: none;
+            color: var(--color-text-primary);
+            width: 100%;
+            padding-left: 10px;
+            outline: none;
+        }
+
+    .search-icon {
+        color: var(--color-text-secondary);
+    }
+
+    .actions {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .notification {
+        position: relative;
+        cursor: pointer;
+    }
+
+    .notification-badge {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        width: 10px;
+        height: 10px;
+        background-color: var(--color-accent);
+        border-radius: 50%;
+        box-shadow: 0 0 10px var(--color-accent);
+    }
+
+    .user-avatar {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background-color: var(--color-border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        cursor: pointer;
+    }
+    /* Controles de ventana */
+    .window-controls {
+        display: flex;
+        gap: 5px;
+    }
+
+        .window-controls button {
+            background-color: transparent;
+            border: none;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text-primary);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            .window-controls button:hover {
+                background-color: var(--color-border);
+            }
+
+            .window-controls button.close:hover {
+                background-color: red;
+            }
+</style>
+
+@code {
+
+}
