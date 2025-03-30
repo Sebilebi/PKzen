@@ -1,16 +1,18 @@
 ﻿:root {
-    /* Paleta de colores */
-    --color-background: #1a1a1a;
-    --color-surface: #141414;
-    --color-navbar: transparent;
-    --color-accent: #ff4b75;
-    --color-text-primary: #ffffff;
-    --color-text-secondary: #808080;
-    --color-border: #333333;
-    --color-search-bar: #141414;
-    /* Sombras */
-    --shadow-neon: 0 0 10px var(--color-accent);
-    --shadow-inner: inset 0 0 10px rgba(0, 0, 0, 0.5);
+    --color-base-100: #2a303c;
+    --color-base-200: #242933;
+    --color-base-300: #20252e;
+
+    --color-base-100-text: #b2ccd6;
+    --color-base-200-text: #7c8d98;
+    --color-base-300-text: #464f5b;
+
+    --color-accent: #ff5d5d;
+
+    --border: 1px;
+
+    --shadow-action-neon: 0 0 10px var(--color-accent);
+    --shadow-inner: inset 0 0 5px var(--color-base-300);
 }
 
 * {
@@ -21,8 +23,8 @@
 }
 
 html, body {
-    background-color: var(--color-background);
-    color: var(--color-text-primary);
+    background-color: var(--color-base-200);
+    color: var(--color-base-100-text);
 }
 
 h1:focus {
