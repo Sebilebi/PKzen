@@ -3,9 +3,9 @@ using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Interop;
 
-namespace PKure.Components.TitleBar
+namespace PKure.Components.Layout
 {
-    public partial class TitleBar
+    public partial class MainLayout
     {
         private const int WM_NCLBUTTONDOWN = 0x00A1;
         private const int HTCAPTION = 2;
