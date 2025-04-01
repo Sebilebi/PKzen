@@ -1,0 +1,31 @@
+﻿.poke-card {
+    background-color: var(--color-base-100);
+    border: var(--border) solid var(--color-base-300);
+    border-radius: 15px;
+    box-shadow: var(--shadow-inner);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+    .poke-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .poke-card img {
+        width: 100%;
+        max-width: 150px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }
+
+    .poke-card h3 {
+        margin-bottom: 5px;
+        font-size: 20px;
+    }
+
+    .poke-card p {
+        margin: 0;
+        font-size: 16px;
+        color: var(--color-base-200-text);
+    }
