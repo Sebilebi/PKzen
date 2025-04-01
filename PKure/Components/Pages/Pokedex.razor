@@ -1,39 +1,16 @@
-﻿<div class="pokegrid">
-    @foreach (var pokemon in pokemons)
-    {
-        <PokeCard Name="@pokemon.Name" Type="@pokemon.Type" ImageUrl="@pokemon.ImageUrl" />
-    }
-</div>
-
-@code {
-    public class Pokemon
-    {
-        public string Name { get; set; }
-        public string Type { get; set; }
-        public string ImageUrl { get; set; }
-    }
-
-    List<Pokemon> pokemons = new List<Pokemon>
-      {
-        new Pokemon { Name = "Bulbasaur",  Type = "Grass / Poison",      ImageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" },
-        new Pokemon { Name = "Ivysaur",    Type = "Grass / Poison",      ImageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png" },
-        new Pokemon { Name = "Venusaur",   Type = "Grass / Poison",      ImageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png" },
-        new Pokemon { Name = "Charmander", Type = "Fire",              ImageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png" },
-        new Pokemon { Name = "Charmeleon", Type = "Fire",              ImageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/5.png" },
-        new Pokemon { Name = "Charizard",  Type = "Fire / Flying",       ImageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png" },
-        new Pokemon { Name = "Squirtle",   Type = "Water",             ImageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png" },
-        new Pokemon { Name = "Wartortle",  Type = "Water",             ImageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/8.png" },
-        new Pokemon { Name = "Blastoise",  Type = "Water",             ImageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/9.png" },
-        new Pokemon { Name = "Caterpie",   Type = "Bug",               ImageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10.png" },
-        new Pokemon { Name = "Metapod",    Type = "Bug",               ImageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/11.png" },
-        new Pokemon { Name = "Butterfree", Type = "Bug / Flying",        ImageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/12.png" },
-        new Pokemon { Name = "Weedle",     Type = "Bug / Poison",        ImageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/13.png" },
-        new Pokemon { Name = "Kakuna",     Type = "Bug / Poison",        ImageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/14.png" },
-        new Pokemon { Name = "Beedrill",   Type = "Bug / Poison",        ImageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png" },
-        new Pokemon { Name = "Pidgey",     Type = "Normal / Flying",     ImageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/16.png" },
-        new Pokemon { Name = "Pidgeotto",  Type = "Normal / Flying",     ImageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/17.png" },
-        new Pokemon { Name = "Pidgeot",    Type = "Normal / Flying",     ImageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/18.png" },
-        new Pokemon { Name = "Rattata",    Type = "Normal",            ImageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/19.png" },
-        new Pokemon { Name = "Raticate",   Type = "Normal",            ImageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/20.png" }
-      };
+﻿@if (pokemons == null)
+{
+    <p>Cargando...</p>
+}
+else
+{
+    <div class="pokegrid">
+        @foreach (var pokemon in pokemons)
+        {
+            <PokeCard Id="@(pokemon.Id)"
+                      Name="@pokemon.Name"
+                      Type="@pokemon.Type"
+                      ImageUrl="@pokemon.ImageUrl" />
+        }
+    </div>
 }

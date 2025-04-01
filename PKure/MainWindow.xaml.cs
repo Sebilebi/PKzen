@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using System.Net.Http;
 using System.Windows;
 
 namespace PKure
@@ -12,6 +13,13 @@ namespace PKure
         {
             var serviceCollection = new ServiceCollection();
             serviceCollection.AddWpfBlazorWebView();
+
+            // Registrar HttpClient.
+            serviceCollection.AddScoped(sp => new HttpClient());
+
+            // Registrar nuestro servicio de la PokeApi.
+            serviceCollection.AddScoped<Services.PokeApiService>();
+
             Resources.Add("services", serviceCollection.BuildServiceProvider());
 
             InitializeComponent();
