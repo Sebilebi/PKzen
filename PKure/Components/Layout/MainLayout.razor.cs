@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components.Web;
+﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Interop;
@@ -7,6 +8,8 @@ namespace PKure.Components.Layout
 {
     public partial class MainLayout
     {
+
+        [Inject] public NavigationManager navigationManager { get; set; }
         private const int WM_NCLBUTTONDOWN = 0x00A1;
         private const int HTCAPTION = 2;
 
@@ -18,6 +21,16 @@ namespace PKure.Components.Layout
 
         // Obtiene la ventana principal de WPF.
         private System.Windows.Window GetCurrentWindow() => System.Windows.Application.Current.MainWindow;
+
+        protected override void OnInitialized()
+        {
+            // Si la ruta actual está vacía ("/"), redirige a /pokedex
+            var uri = navigationManager.ToBaseRelativePath(navigationManager.Uri).TrimEnd('/');
+            if (string.IsNullOrEmpty(uri))
+            {
+                navigationManager.NavigateTo("/pokedex");
+            }
+        }
 
         private void OnTitleBarClick(MouseEventArgs e)
         {
@@ -73,6 +86,24 @@ namespace PKure.Components.Layout
             {
                 SystemCommands.CloseWindow(window);
             }
+        }
+
+        /// <summary>
+        /// Devuelve "active" si la ruta actual coincide con href.
+        /// </summary>
+        /// <param name="href">La ruta a comparar, ej. "/pokedex".</param>
+        /// <returns>"active" o cadena vacía.</returns>
+        private string IsActive(string href)
+        {
+            // Obtiene la URI actual y extrae la parte relativa.
+            var uri = navigationManager.ToBaseRelativePath(navigationManager.Uri).TrimEnd('/');
+            href = href.TrimStart('/').TrimEnd('/');
+
+            // Si la URI actual es vacía, significa que estamos en la raíz.
+            if (string.IsNullOrEmpty(uri) && string.IsNullOrEmpty(href))
+                return "active";
+
+            return uri.Equals(href, System.StringComparison.InvariantCultureIgnoreCase) ? "active" : "";
         }
     }
 }
