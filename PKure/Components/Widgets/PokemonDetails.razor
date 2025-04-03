@@ -1,0 +1,140 @@
+﻿@using PKure.Models.ViewModel
+
+<div class="pokemon-detail-card">
+    <!-- Close button -->
+    <div class="close-button">×</div>
+
+    <!-- Gender selector buttons -->
+    <div class="gender-selector">
+        <div class="gender-button male">♂</div>
+        <div class="gender-button female">♀</div>
+    </div>
+
+    <div class="pokemon-detail-card-header">
+        <div class="pokemon-number">#445</div>
+        <img src="/api/placeholder/200/200" alt="Garchomp" class="pokemon-img">
+        <h1 class="pokemon-name">@Pokemon.Name</h1>
+        <p class="pokemon-title">Emperor Pokémon</p>
+        <div class="type-badges">
+            <div class="type-badge dragon">Dragon</div>
+            <div class="type-badge ground">Ground</div>
+        </div>
+    </div>
+
+    <div class="pokemon-detail-card-section">
+        <h2 class="section-title">ABILITIES</h2>
+        <div class="abilities">
+            <div class="ability">Sand Veil</div>
+            <div class="ability">Rough Skin</div>
+        </div>
+    </div>
+
+    <div class="pokemon-detail-card-section">
+        <h2 class="section-title">WEAKNESSES</h2>
+        <div class="weaknesses">
+            <div class="weakness-badge ice">Ice</div>
+            <div class="weakness-badge dragon">Dragon</div>
+            <div class="weakness-badge fairy">Fairy</div>
+            <div class="weakness-badge water">Water</div>
+            <div class="weakness-badge grass">Grass</div>
+        </div>
+    </div>
+
+    <div class="pokemon-detail-card-section">
+        <h2 class="section-title">STATS</h2>
+        <div class="stats-container">
+            <div class="stat-row">
+                <div class="stat-name">HP</div>
+                <div class="stat-bar-container">
+                    <div class="stat-bar stat-high" style="width: 108%;"></div>
+                </div>
+                <div class="stat-value">108</div>
+            </div>
+            <div class="stat-row">
+                <div class="stat-name">Attack</div>
+                <div class="stat-bar-container">
+                    <div class="stat-bar stat-very-high" style="width: 130%;"></div>
+                </div>
+                <div class="stat-value">130</div>
+            </div>
+            <div class="stat-row">
+                <div class="stat-name">Defense</div>
+                <div class="stat-bar-container">
+                    <div class="stat-bar stat-high" style="width: 95%;"></div>
+                </div>
+                <div class="stat-value">95</div>
+            </div>
+            <div class="stat-row">
+                <div class="stat-name">Sp. Atk</div>
+                <div class="stat-bar-container">
+                    <div class="stat-bar stat-medium" style="width: 80%;"></div>
+                </div>
+                <div class="stat-value">80</div>
+            </div>
+            <div class="stat-row">
+                <div class="stat-name">Sp. Def</div>
+                <div class="stat-bar-container">
+                    <div class="stat-bar stat-medium" style="width: 85%;"></div>
+                </div>
+                <div class="stat-value">85</div>
+            </div>
+            <div class="stat-row">
+                <div class="stat-name">Speed</div>
+                <div class="stat-bar-container">
+                    <div class="stat-bar stat-high" style="width: 102%;"></div>
+                </div>
+                <div class="stat-value">102</div>
+            </div>
+            <div class="stat-row">
+                <div class="stat-name">Total</div>
+                <div class="stat-bar-container">
+                    <div class="stat-bar stat-max" style="width: 100%;"></div>
+                </div>
+                <div class="stat-value">600</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pokemon-detail-card-section">
+        <h2 class="section-title">EVOLUTION</h2>
+        <div class="evolution-chain">
+            <div class="evolution-stage">
+                <div class="evolution-img">
+                    <div class="evolution-sprite">G</div>
+                </div>
+                <div class="evolution-name">Gible</div>
+                <div class="evolution-level">Lvl 16</div>
+            </div>
+            <div class="evolution-arrow">›</div>
+            <div class="evolution-stage">
+                <div class="evolution-img">
+                    <div class="evolution-sprite">G</div>
+                </div>
+                <div class="evolution-name">Gabite</div>
+                <div class="evolution-level">Lvl 35</div>
+            </div>
+            <div class="evolution-arrow">›</div>
+            <div class="evolution-stage">
+                <div class="evolution-img active">
+                    <div class="evolution-sprite">G</div>
+                </div>
+                <div class="evolution-name">Garchomp</div>
+                <div class="evolution-level"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <div class="nav-button">
+            ‹ <span class="nav-number">#444</span>
+        </div>
+        <div class="nav-button">
+            <span class="nav-number">#446</span> ›
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public PokemonDetailViewModel Pokemon { get; set; }
+}

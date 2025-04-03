@@ -1,5 +1,6 @@
 ﻿using PKure.Mapping;
 using PKure.Models;
+using PKure.Models.ViewModel;
 using System.Net.Http;
 using System.Net.Http.Json;
 

@@ -13,6 +13,17 @@
 
     --shadow-action-neon: 0 0 10px var(--color-accent);
     --shadow-inner: inset 0 0 5px var(--color-base-300);
+
+    /* Colores de las estadísticas - basados en rangos de valores */
+    --stat-very-low: #f34444;   /* 0-30 */
+    --stat-low: #ff7f0f;        /* 31-60 */
+    --stat-medium: #ffdd57;     /* 61-90 */  
+    --stat-high: #a0e515;       /* 91-120 */
+    --stat-very-high: #23cd5e;  /* 121-150 */
+    --stat-max: #00c2b8;        /* 151+ */
+            
+    --male-color: #3090f0;
+    --female-color: #ff77a1;
 }
 
 * {

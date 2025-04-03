@@ -1,4 +1,5 @@
 ﻿using PKure.Models;
+using PKure.Models.ViewModel;
 
 namespace PKure.Mapping
 {

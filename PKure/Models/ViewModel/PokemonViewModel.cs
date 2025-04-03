@@ -1,4 +1,4 @@
-﻿namespace PKure.Models
+﻿namespace PKure.Models.ViewModel
 {
     public class PokemonViewModel
     {

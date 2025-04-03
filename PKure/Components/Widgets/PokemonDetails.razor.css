@@ -1,0 +1,302 @@
+﻿.pokemon-detail-card {
+    background-color: var(--color-base-100);
+    border-radius: 12px;
+    width: 320px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    color: var(--color-base-100-text);
+    border: var(--border) solid var(--color-base-300);
+    position: relative;
+}
+
+.pokemon-detail-card-header {
+    padding: 15px;
+    text-align: center;
+    position: relative;
+    border-bottom: var(--border) solid var(--color-base-300);
+}
+
+.pokemon-number {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    color: var(--color-base-200-text);
+    font-size: 14px;
+}
+
+.pokemon-img {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    display: block;
+    object-fit: contain;
+}
+
+.pokemon-name {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.pokemon-title {
+    font-size: 14px;
+    color: var(--color-base-200-text);
+    margin-top: 5px;
+}
+
+.type-badges {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.type-badge {
+    padding: 5px 15px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+}
+
+.dragon {
+    background-color: var(--dragon-type);
+}
+
+.ground {
+    background-color: var(--ground-type);
+}
+
+.ice {
+    background-color: var(--ice-type);
+    color: #333;
+}
+
+.fairy {
+    background-color: var(--fairy-type);
+}
+
+.water {
+    background-color: var(--water-type);
+}
+
+.grass {
+    background-color: var(--grass-type);
+}
+
+.pokemon-detail-card-section {
+    padding: 15px;
+    border-bottom: var(--border) solid var(--color-base-300);
+}
+
+.section-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: var(--color-base-100-text);
+}
+
+.abilities {
+    display: flex;
+    gap: 10px;
+}
+
+.ability {
+    background-color: var(--color-base-200);
+    border-radius: 15px;
+    padding: 5px 15px;
+    font-size: 14px;
+    box-shadow: var(--shadow-inner);
+}
+
+.weaknesses {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.weakness-badge {
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+}
+
+.stats-container {
+    margin-top: 10px;
+}
+
+.stat-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.stat-name {
+    width: 60px;
+    font-size: 14px;
+    color: var(--color-base-200-text);
+}
+
+.stat-bar-container {
+    flex: 1;
+    height: 10px;
+    background-color: var(--color-base-200);
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 0 10px;
+    box-shadow: var(--shadow-inner);
+}
+
+.stat-bar {
+    height: 100%;
+    border-radius: 5px;
+}
+
+/* Stat bars colored by value like PokemonDB */
+.stat-very-low {
+    background-color: var(--stat-very-low);
+}
+
+.stat-low {
+    background-color: var(--stat-low);
+}
+
+.stat-medium {
+    background-color: var(--stat-medium);
+}
+
+.stat-high {
+    background-color: var(--stat-high);
+}
+
+.stat-very-high {
+    background-color: var(--stat-very-high);
+}
+
+.stat-max {
+    background-color: var(--stat-max);
+}
+
+.stat-value {
+    font-size: 14px;
+    min-width: 30px;
+    text-align: right;
+}
+
+.evolution-chain {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.evolution-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.evolution-arrow {
+    color: var(--color-base-200-text);
+    font-size: 20px;
+}
+
+.evolution-img {
+    width: 60px;
+    height: 60px;
+    background-color: var(--color-base-200);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+    box-shadow: var(--shadow-inner);
+}
+
+    .evolution-img.active {
+        border: 2px solid var(--color-accent);
+        box-shadow: var(--shadow-action-neon);
+    }
+
+.evolution-name {
+    font-size: 12px;
+    margin-bottom: 2px;
+}
+
+.evolution-level {
+    font-size: 10px;
+    color: var(--color-base-200-text);
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.nav-button {
+    color: var(--color-base-200-text);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+}
+
+.nav-number {
+    color: var(--color-base-300-text);
+}
+
+/* Close button styles */
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 24px;
+    height: 24px;
+    background-color: var(--color-base-200);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 10;
+    color: var(--color-base-100-text);
+    font-size: 18px;
+    box-shadow: var(--shadow-inner);
+}
+
+/* Gender selector buttons */
+.gender-selector {
+    position: absolute;
+    top: 50px;
+    right: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 10;
+}
+
+.gender-button {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: var(--shadow-inner);
+    background-color: var(--color-base-200);
+}
+
+    .gender-button.male {
+        color: var(--male-color);
+    }
+
+    .gender-button.female {
+        color: var(--female-color);
+    }

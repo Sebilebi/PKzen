@@ -1,19 +1,20 @@
-﻿<div class="poke-card">
-    <img src="@ImageUrl" alt="@Name" />
-    <h3>@Name</h3>
-    <p>Tipo: @Type</p>
+﻿@using PKure.Models.ViewModel
+
+<div @onclick="HandleClick" class="poke-card">
+    <img src="@Pokemon.ImageUrl" alt="@Pokemon.Name" />
+    <h3>@Pokemon.Name</h3>
+    <p>Tipo: @Pokemon.Type</p>
 </div>
 
 @code {
     [Parameter]
-    public int Id { get; set; }
+    public PokemonViewModel Pokemon { get; set; }
 
     [Parameter]
-    public string Name { get; set; }
+    public EventCallback<PokemonViewModel> OnClick { get; set; }
 
-    [Parameter]
-    public string Type { get; set; } // Tipos separados por " / "
-
-    [Parameter]
-    public string ImageUrl { get; set; }
+    private async Task HandleClick()
+    {
+        await OnClick.InvokeAsync(Pokemon);
+    }
 }

@@ -10,10 +10,14 @@ else
     <div class="pokegrid">
         @foreach (var pokemon in pokemons)
         {
-            <PokeCard Id="@(pokemon.Id)"
-                      Name="@pokemon.Name"
-                      Type="@pokemon.Type"
-                      ImageUrl="@pokemon.ImageUrl" />
+            <PokeCard Pokemon="pokemon" OnClick="OnPokemonSelected" />
         }
     </div>
+
+    @if (SelectedPokemon != null)
+    {
+        <div class="pokemon-detail">
+            <PokemonDetails Pokemon="SelectedPokemon" />
+        </div>
+    }
 }
