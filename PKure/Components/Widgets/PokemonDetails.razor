@@ -2,7 +2,7 @@
 
 <div class="pokemon-detail-card">
     <!-- Close button -->
-    <div class="close-button">×</div>
+    <div class="close-button" @onclick="HandleClose">×</div>
 
     <!-- Gender selector buttons -->
     <div class="gender-selector">
@@ -11,13 +11,15 @@
     </div>
 
     <div class="pokemon-detail-card-header">
-        <div class="pokemon-number">#445</div>
-        <img src="/api/placeholder/200/200" alt="Garchomp" class="pokemon-img">
+        <div class="pokemon-number">#@Pokemon.Id</div>
+        <img src="@Pokemon.ImageUrl" alt="@Pokemon.Name" class="pokemon-img">
         <h1 class="pokemon-name">@Pokemon.Name</h1>
         <p class="pokemon-title">Emperor Pokémon</p>
         <div class="type-badges">
-            <div class="type-badge dragon">Dragon</div>
-            <div class="type-badge ground">Ground</div>
+            @foreach (var type in Pokemon.Types)
+            {
+                <div class="type-badge">@type</div>
+            }
         </div>
     </div>
 
@@ -32,11 +34,11 @@
     <div class="pokemon-detail-card-section">
         <h2 class="section-title">WEAKNESSES</h2>
         <div class="weaknesses">
-            <div class="weakness-badge ice">Ice</div>
-            <div class="weakness-badge dragon">Dragon</div>
-            <div class="weakness-badge fairy">Fairy</div>
-            <div class="weakness-badge water">Water</div>
-            <div class="weakness-badge grass">Grass</div>
+            <div class="weakness-badge">Ice</div>
+            <div class="weakness-badge">Dragon</div>
+            <div class="weakness-badge">Fairy</div>
+            <div class="weakness-badge">Water</div>
+            <div class="weakness-badge">Grass</div>
         </div>
     </div>
 
@@ -126,10 +128,10 @@
 
     <div class="navigation">
         <div class="nav-button">
-            ‹ <span class="nav-number">#444</span>
+            ‹ <span class="nav-number">#@(Pokemon.Id - 1)</span>
         </div>
         <div class="nav-button">
-            <span class="nav-number">#446</span> ›
+            <span class="nav-number">#@(Pokemon.Id + 1)</span> ›
         </div>
     </div>
 </div>
@@ -137,4 +139,12 @@
 @code {
     [Parameter]
     public PokemonDetailViewModel Pokemon { get; set; }
+
+    [Parameter]
+    public EventCallback OnClose { get; set; }
+
+    private async Task HandleClose()
+    {
+        await OnClose.InvokeAsync();
+    }
 }

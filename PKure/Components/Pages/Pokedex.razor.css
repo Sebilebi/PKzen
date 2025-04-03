@@ -1,5 +1,29 @@
 ﻿.pokegrid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)) 320px;
     gap: 20px;
+    position: relative;
+}
+
+    /* Si no hay `.pokemon-detail`, elimina la última columna */
+    .pokegrid:not(:has(.pokemon-detail)) {
+        grid-template-columns: repeat(auto-fill, minmax(0px, 1fr));
+    }
+
+.pokemon-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    grid-column: 1 / -2;
+}
+
+.pokemon-detail {
+    grid-column: -2 / -1;
+    height: max-content;
+}
+
+.fixed-detail {
+    position: sticky;
+    top: 20px;
+    align-self: flex-start;
 }

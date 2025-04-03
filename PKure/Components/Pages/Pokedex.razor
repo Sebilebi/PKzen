@@ -1,23 +1,25 @@
 ﻿@page "/pokedex"
 @using PKure.Components.Widgets
 
-@if (pokemons == null)
-{
-    <p>Cargando...</p>
-}
-else
-{
-    <div class="pokegrid">
-        @foreach (var pokemon in pokemons)
+<div class="pokegrid">
+    <div class="pokemon-cards">
+        @if (pokemons == null)
         {
-            <PokeCard Pokemon="pokemon" OnClick="OnPokemonSelected" />
+            <p>Cargando...</p>
+        }
+        else
+        {
+            @foreach (var pokemon in pokemons)
+            {
+                <PokeCard Pokemon="pokemon" OnClick="OnPokemonSelected" />
+            }
         }
     </div>
 
     @if (SelectedPokemon != null)
     {
-        <div class="pokemon-detail">
-            <PokemonDetails Pokemon="SelectedPokemon" />
+        <div class="pokemon-detail fixed-detail">
+            <PokemonDetails Pokemon="SelectedPokemon" OnClose="CloseDetails" />
         </div>
     }
-}
+</div>

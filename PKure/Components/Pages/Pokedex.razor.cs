@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Components;
-using PKure.Models;
 using PKure.Models.ViewModel;
 using PKure.Services;
 
@@ -31,6 +30,11 @@ namespace PKure.Components.Pages
 
             if (details != null)
                 SelectedPokemon = details;
+        }
+
+        private void CloseDetails()
+        {
+            SelectedPokemon = null;
         }
     }
 }

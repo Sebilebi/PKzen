@@ -1,12 +1,14 @@
 ﻿.pokemon-detail-card {
-    background-color: var(--color-base-100);
-    border-radius: 12px;
     width: 320px;
     overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     color: var(--color-base-100-text);
-    border: var(--border) solid var(--color-base-300);
     position: relative;
+    background-color: var(--color-base-100);
+    border: var(--border) solid var(--color-base-300);
+    border-radius: 15px;
+    box-shadow: var(--shadow-inner);
+    padding: 20px;
+    text-align: center;
 }
 
 .pokemon-detail-card-header {
@@ -60,31 +62,6 @@
     text-transform: uppercase;
 }
 
-.dragon {
-    background-color: var(--dragon-type);
-}
-
-.ground {
-    background-color: var(--ground-type);
-}
-
-.ice {
-    background-color: var(--ice-type);
-    color: #333;
-}
-
-.fairy {
-    background-color: var(--fairy-type);
-}
-
-.water {
-    background-color: var(--water-type);
-}
-
-.grass {
-    background-color: var(--grass-type);
-}
-
 .pokemon-detail-card-section {
     padding: 15px;
     border-bottom: var(--border) solid var(--color-base-300);
@@ -121,8 +98,9 @@
     border-radius: 12px;
     font-size: 10px;
     font-weight: bold;
-    color: white;
+    color: var(--color-base-200-text);
     text-transform: uppercase;
+    background-color: var(--color-base-200);
 }
 
 .stats-container {
