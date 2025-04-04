@@ -2,6 +2,8 @@
 
 PKure es una aplicación multifuncional diseñada para entrenadores Pokémon que buscan optimizar su experiencia de juego. Esta herramienta reúne en un solo lugar todo lo que necesitas para tus aventuras Pokémon.
 
+> **Nota importante:** La mayoría de las características mencionadas en este documento están actualmente en desarrollo y se implementarán gradualmente. Este README describe la visión completa del proyecto.
+
 ## 🌟 Características
 
 ### 📱 Pokédex
@@ -36,40 +38,33 @@ PKure es una aplicación multifuncional diseñada para entrenadores Pokémon que
 
 ## 🚀 Instalación
 
-```bash
-# Clonar el repositorio
-git clone https://github.com/Sebilebi/PKure.git
-
-# Navegar al directorio
-cd PKure
-
-# Instalar dependencias
-npm install
-
-# Iniciar la aplicación
-npm start
-```
+Esta sección se actualizará con instrucciones de instalación precisas cuando el proyecto esté disponible para su uso público.
 
 ## 💻 Requisitos del Sistema
 
-- Sistema Operativo: Windows 10+, macOS 10.15+, o Linux
-- Memoria RAM: 4GB mínimo
-- Espacio en disco: 500MB
-- Conexión a internet para actualizaciones y acceso a la base de datos de Pokémon
+### Requisitos Obligatorios
+
+- .NET 9.0 o superior
+- Conexión a internet para la descarga de datos de Pokémon
+- Juego Pokémon compatible instalado para funcionalidades de edición de partidas
 
 ## 🛠️ Tecnologías Utilizadas
 
-- Frontend: React/Electron
-- Base de datos: SQLite
-- API de Pokémon: PokeAPI v2
-- Editor: PKHeX
+- C# / .NET
+- WPF - BlazorWebView para la interfaz gráfica
+- PKHeX como biblioteca de edición de partidas
+- PokeAPI v2 para datos de Pokémon
 
 ## 📝 Uso
 
-1. Inicia la aplicación
-2. Navega entre las diferentes secciones mediante el menú principal
-3. Para el editor de partidas, asegúrate de tener una copia de seguridad antes de realizar modificaciones
-4. Para usar la GUI en tiempo real, activa la opción antes de iniciar un combate
+Instrucciones detalladas de uso se proporcionarán cuando las características estén implementadas.
+
+## 📷 Capturas de Pantalla
+
+<div align="center">
+  <!-- Las imágenes se añadirán conforme el proyecto avance -->
+  <p><i>Las capturas de pantalla se añadirán cuando las características estén implementadas</i></p>
+</div>
 
 ## 👨‍💻 Contribución
 
@@ -91,9 +86,7 @@ npm start
 
 Este proyecto está licenciado bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
 
-## ⚠️ Descargo de responsabilidad
-
-PKure es una herramienta no oficial y no está afiliada con Nintendo, Game Freak o The Pokémon Company. Todos los nombres de productos, logotipos y marcas son propiedad de sus respectivos dueños.
+**IMPORTANTE:** El único sitio oficial para descargar esta herramienta es este repositorio (https://github.com/Sebilebi/PKure). No existen otros sitios oficiales de descarga. Cualquier otra fuente podría contener versiones modificadas o maliciosas.
 
 ---
 
