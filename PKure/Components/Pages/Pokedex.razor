@@ -11,7 +11,9 @@
         {
             @foreach (var pokemon in pokemons)
             {
-                <PokeCard Pokemon="pokemon" OnClick="OnPokemonSelected" />
+                <PokeCard Pokemon="pokemon"
+                          OnClick="OnPokemonSelected"
+                          IsSelected="@(SelectedPokemon?.Id == pokemon.Id)" />
             }
         }
     </div>

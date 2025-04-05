@@ -21,16 +21,18 @@ namespace PKure.Components.Pages
             if (pokemon == null)
                 return;
 
-            PokemonDetailViewModel details = new PokemonDetailViewModel();
-            details.Id = pokemon.Id;
-            details.Name = pokemon.Name;
-            details.ImageUrl = pokemon.ImageUrl;
-            details.Types = pokemon.Type.Split('/').Select(t => t.Trim()).ToList();
-            details.Stats = new List<StatViewModel>();
+            PokemonDetailViewModel details = new PokemonDetailViewModel
+            {
+                Id = pokemon.Id,
+                Name = pokemon.Name,
+                ImageUrl = pokemon.ImageUrl,
+                Types = pokemon.Type.Split('/').Select(t => t.Trim()).ToList(),
+                Stats = new List<StatViewModel>()
+            };
 
-            if (details != null)
-                SelectedPokemon = details;
+            SelectedPokemon = details;
         }
+
 
         private void CloseDetails()
         {

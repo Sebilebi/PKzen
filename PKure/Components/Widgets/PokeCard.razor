@@ -1,6 +1,6 @@
 ﻿@using PKure.Models.ViewModel
 
-<div @onclick="HandleClick" class="poke-card">
+<div @onclick="HandleClick" class="poke-card @(IsSelected ? "selected" : "")">
     <img src="@Pokemon.ImageUrl" alt="@Pokemon.Name" />
     <h3>@Pokemon.Name</h3>
     <p>Tipo: @Pokemon.Type</p>
@@ -12,6 +12,9 @@
 
     [Parameter]
     public EventCallback<PokemonViewModel> OnClick { get; set; }
+
+    [Parameter]
+    public bool IsSelected { get; set; }
 
     private async Task HandleClick()
     {
