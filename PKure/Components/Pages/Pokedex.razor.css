@@ -24,6 +24,6 @@
 
 .fixed-detail {
     position: sticky;
-    top: 20px;
+    top: -334px; /* 320 + 10 + 4 ==> <Height-PokemonDetails> + <padding-container> + <padding-window> en negativo */
     align-self: flex-start;
 }
