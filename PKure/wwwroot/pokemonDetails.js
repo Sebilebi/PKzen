@@ -1,28 +1,32 @@
 document.addEventListener('DOMContentLoaded', function () {
     let lastScrollTop = 0;
+    const initialTop = -334;
+    const finalTop = 20;
 
     const observer = new MutationObserver(function (mutations) {
         mutations.forEach(function (mutation) {
             if (mutation.addedNodes.length) {
                 mutation.addedNodes.forEach(function (node) {
                     if (node.classList && node.classList.contains('pokemon-detail')) {
-                        console.log('Elemento pokemon-detail encontrado');
                         const pokemonDetailElement = node;
+                        pokemonDetailElement.style.top = `${initialTop}px`;
 
                         window.addEventListener('scroll', function () {
                             let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                            console.log('ScrollTop actual:', scrollTop);
-                            if (scrollTop > lastScrollTop) {
+
+                            let delta = scrollTop - lastScrollTop;
+                            let currentTop = parseFloat(pokemonDetailElement.style.top);
+
+                            if (delta > 0) {
                                 // Scroll hacia abajo
-                                console.log('Scroll hacia abajo');
-                                pokemonDetailElement.style.top = '-334px';
+                                currentTop = Math.max(initialTop, currentTop - delta);
                             } else {
                                 // Scroll hacia arriba
-                                console.log('Scroll hacia arriba');
-                                pokemonDetailElement.style.top = '20px';
+                                currentTop = Math.min(finalTop, currentTop - delta);
                             }
+
+                            pokemonDetailElement.style.top = `${currentTop}px`;
                             lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Para evitar valores negativos
-                            console.log('Último ScrollTop:', lastScrollTop);
                         });
                     }
                 });
