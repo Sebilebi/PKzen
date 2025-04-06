@@ -1,4 +1,6 @@
 ﻿@using PKure.Models
+@using PKure.Services
+@inject LanguageService LanguageService
 
 <div class="pokemon-detail-card">
     <!-- Close button -->
@@ -12,13 +14,13 @@
 
     <div class="pokemon-detail-card-header">
         <div class="pokemon-number">#@Pokemon.Id</div>
-        <img src="@Pokemon.ImageUrl" alt="@Pokemon.SpeciesDetails.GetLocalizedName()" class="pokemon-img">
-        <h1 class="pokemon-name">@Pokemon.SpeciesDetails.GetLocalizedName()</h1>
-        <p class="pokemon-title">@Pokemon.SpeciesDetails.GetLocalizedGenus()</p>
+        <img src="@Pokemon.ImageUrl" alt="@Pokemon.SpeciesDetails.GetLocalizedName(LanguageService.CurrentLanguage)" class="pokemon-img">
+        <h1 class="pokemon-name">@Pokemon.SpeciesDetails.GetLocalizedName(LanguageService.CurrentLanguage)</h1>
+        <p class="pokemon-title">@Pokemon.SpeciesDetails.GetLocalizedGenus(LanguageService.CurrentLanguage)</p>
         <div class="type-badges">
             @foreach (var type in Pokemon.Types)
             {
-                <div class="type-badge">@type.Details.GetLocalizedName()</div>
+                <div class="type-badge">@type.Details.GetLocalizedName(LanguageService.CurrentLanguage)</div>
             }
         </div>
     </div>
@@ -28,7 +30,7 @@
         <div class="abilities">
             @foreach (var ability in Pokemon.Abilities)
             {
-                <div class="ability">@ability.Details.GetLocalizedName()</div>
+                <div class="ability">@ability.Details.GetLocalizedName(LanguageService.CurrentLanguage)</div>
             }
         </div>
     </div>
@@ -46,7 +48,7 @@
             @foreach (var stat in Pokemon.Stats)
             {
                 <div class="stat-row">
-                    <div class="stat-name">@stat.Details.GetLocalizedName()</div>
+                    <div class="stat-name">@stat.Details.GetLocalizedName(LanguageService.CurrentLanguage)</div>
                     <div class="stat-bar-container">
                         <div class="stat-bar" style="width: @stat.BaseStat%;"></div>
                     </div>
@@ -105,7 +107,7 @@
     {
         var stages = new List<(string Name, string Level)>
         {
-            (chainLink.SpeciesDetails?.GetLocalizedName() ?? chainLink.Species.Name, level)
+            (chainLink.SpeciesDetails?.GetLocalizedName(LanguageService.CurrentLanguage) ?? chainLink.Species.Name, level)
         };
 
         foreach (var evolvesTo in chainLink.EvolvesTo)
@@ -117,7 +119,7 @@
             }
             else
             {
-                evolutionLevel += evolvesTo.SpeciesDetails?.GetLocalizedName() ?? evolvesTo.Species.Name;
+                evolutionLevel += evolvesTo.SpeciesDetails?.GetLocalizedName(LanguageService.CurrentLanguage) ?? evolvesTo.Species.Name;
             }
 
             stages.AddRange(GetEvolutionStages(evolvesTo, evolutionLevel));

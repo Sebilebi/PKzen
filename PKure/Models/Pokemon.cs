@@ -98,13 +98,13 @@ namespace PKure.Models
         public List<EffectEntry> EffectEntries { get; set; }
 
         // Método para obtener el nombre localizado
-        public string GetLocalizedName(string language = "es")
+        public string GetLocalizedName(string language)
         {
             return Names?.FirstOrDefault(n => n.Language.Name == language)?.Value ?? Name;
         }
 
         // Método para obtener el efecto localizado
-        public string GetLocalizedEffect(string language = "es")
+        public string GetLocalizedEffect(string language)
         {
             return EffectEntries?.FirstOrDefault(e => e.Language.Name == language)?.Effect ?? "";
         }
@@ -191,7 +191,7 @@ namespace PKure.Models
         public List<Name> Names { get; set; }
 
         // Método para obtener el nombre localizado
-        public string GetLocalizedName(string language = "es")
+        public string GetLocalizedName(string language)
         {
             return Names?.FirstOrDefault(n => n.Language.Name == language)?.Value ?? Name;
         }
@@ -293,7 +293,7 @@ namespace PKure.Models
         public List<Name> Names { get; set; }
 
         // Método para obtener el nombre localizado
-        public string GetLocalizedName(string language = "es")
+        public string GetLocalizedName(string language)
         {
             return Names?.FirstOrDefault(n => n.Language.Name == language)?.Value ?? Name;
         }
@@ -323,7 +323,7 @@ namespace PKure.Models
         public List<Name> Names { get; set; }
 
         // Método para obtener el nombre localizado
-        public string GetLocalizedName(string language = "es")
+        public string GetLocalizedName(string language)
         {
             return Names?.FirstOrDefault(n => n.Language.Name == language)?.Value ?? Name;
         }
@@ -380,19 +380,19 @@ namespace PKure.Models
         public EvolutionChainReference EvolutionChainReference { get; set; }
 
         // Método para obtener el nombre localizado
-        public string GetLocalizedName(string language = "es")
+        public string GetLocalizedName(string language)
         {
             return Names?.FirstOrDefault(n => n.Language.Name == language)?.Value ?? Name;
         }
 
         // Método para obtener el género localizado (como "Pokémon Ratón" o "Pokémon Emperador")
-        public string GetLocalizedGenus(string language = "es")
+        public string GetLocalizedGenus(string language)
         {
             return Genera?.FirstOrDefault(g => g.Language.Name == language)?.Genuss ?? "";
         }
 
         // Método para obtener la descripción localizada
-        public string GetLocalizedFlavorText(string language = "es")
+        public string GetLocalizedFlavorText(string language)
         {
             return FlavorTextEntries?.FirstOrDefault(f => f.Language.Name == language)?.FlavorText ?? "";
         }

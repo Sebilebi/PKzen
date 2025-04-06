@@ -17,8 +17,11 @@ namespace PKure
             // Registrar HttpClient.
             serviceCollection.AddScoped(sp => new HttpClient());
 
-            // Registrar nuestro servicio de la PokeApi.
+            // Registrar servicio de la PokeApi.
             serviceCollection.AddScoped<Services.PokeApiService>();
+
+            // Registrar servicio del idioma.
+            serviceCollection.AddScoped<Services.LanguageService>();
 
             // Configurar el entorno de desarrollo para BlazorWebView.
             serviceCollection.AddBlazorWebViewDeveloperTools();

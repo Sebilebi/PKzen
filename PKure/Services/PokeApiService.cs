@@ -8,15 +8,21 @@ namespace PKure.Services
     public class PokeApiService
     {
         private readonly HttpClient _httpClient;
-        private readonly string _language;
+        private readonly LanguageService _languageService;
 
-        public PokeApiService(HttpClient httpClient, string language = "es")
+        public PokeApiService(HttpClient httpClient, LanguageService languageService)
         {
             _httpClient = httpClient;
-            _language = language;
+            _languageService = languageService;
+
+            // Suscribirse al evento de cambio de idioma para actualizar los datos
+            _languageService.LanguageChanged += async (sender, language) =>
+            {
+                // Aquí implementar una lógica para recargar los datos cuando cambia el idioma
+            };
         }
 
-        // Obtiene los primeros 20 Pokémon y los mapea a PokemonViewModel con datos localizados.
+        // Obtiene los primeros 20 Pokémon con datos localizados.
         public async Task<List<Pokemon>> GetFirst20PokemonAsync()
         {
             var listResponse = await _httpClient.GetFromJsonAsync<PokemonListResponse>(PokeApiEndpoints.PokemonList);
@@ -45,7 +51,8 @@ namespace PKure.Services
             pokemon.SpeciesDetails = species;
 
             // Obtener datos localizados para cada tipo
-            var typeTasks = pokemon.Types.Select(async type => {
+            var typeTasks = pokemon.Types.Select(async type =>
+            {
                 var typeDetails = await _httpClient.GetFromJsonAsync<TypeDetails>(type.Type.Url);
                 type.Details = typeDetails;
                 return type;
@@ -53,7 +60,8 @@ namespace PKure.Services
             await Task.WhenAll(typeTasks);
 
             // Obtener datos localizados para cada habilidad
-            var abilityTasks = pokemon.Abilities.Select(async ability => {
+            var abilityTasks = pokemon.Abilities.Select(async ability =>
+            {
                 var abilityDetails = await _httpClient.GetFromJsonAsync<AbilityDetails>(ability.AbilityInfo.Url);
                 ability.Details = abilityDetails;
                 return ability;
@@ -61,7 +69,8 @@ namespace PKure.Services
             await Task.WhenAll(abilityTasks);
 
             // Obtener datos localizados para cada estadística
-            var statTasks = pokemon.Stats.Select(async stat => {
+            var statTasks = pokemon.Stats.Select(async stat =>
+            {
                 var statDetails = await _httpClient.GetFromJsonAsync<StatDetails>(stat.StatInfo.Url);
                 stat.Details = statDetails;
                 return stat;
