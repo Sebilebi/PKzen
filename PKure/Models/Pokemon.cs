@@ -63,6 +63,9 @@ namespace PKure.Models
 
         // Propiedad de conveniencia para obtener la imagen principal.
         public string ImageUrl => Sprites?.FrontDefault;
+
+        // Propiedades localizadas
+        public PokemonSpecies SpeciesDetails { get; set; }
     }
 
     public class Ability
@@ -75,6 +78,57 @@ namespace PKure.Models
 
         [JsonPropertyName("ability")]
         public NamedApiResource AbilityInfo { get; set; }
+
+        // Detalles localizados de la habilidad
+        public AbilityDetails Details { get; set; }
+    }
+
+    public class AbilityDetails
+    {
+        [JsonPropertyName("id")]
+        public int Id { get; set; }
+
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [JsonPropertyName("names")]
+        public List<Name> Names { get; set; }
+
+        [JsonPropertyName("effect_entries")]
+        public List<EffectEntry> EffectEntries { get; set; }
+
+        // Método para obtener el nombre localizado
+        public string GetLocalizedName(string language = "es")
+        {
+            return Names?.FirstOrDefault(n => n.Language.Name == language)?.Value ?? Name;
+        }
+
+        // Método para obtener el efecto localizado
+        public string GetLocalizedEffect(string language = "es")
+        {
+            return EffectEntries?.FirstOrDefault(e => e.Language.Name == language)?.Effect ?? "";
+        }
+    }
+
+    public class EffectEntry
+    {
+        [JsonPropertyName("effect")]
+        public string Effect { get; set; }
+
+        [JsonPropertyName("short_effect")]
+        public string ShortEffect { get; set; }
+
+        [JsonPropertyName("language")]
+        public NamedApiResource Language { get; set; }
+    }
+
+    public class Name
+    {
+        [JsonPropertyName("name")]
+        public string Value { get; set; }
+
+        [JsonPropertyName("language")]
+        public NamedApiResource Language { get; set; }
     }
 
     public class NamedApiResource
@@ -120,6 +174,27 @@ namespace PKure.Models
 
         [JsonPropertyName("version_group_details")]
         public List<MoveVersion> VersionGroupDetails { get; set; }
+
+        // Detalles localizados del movimiento
+        public MoveDetails Details { get; set; }
+    }
+
+    public class MoveDetails
+    {
+        [JsonPropertyName("id")]
+        public int Id { get; set; }
+
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [JsonPropertyName("names")]
+        public List<Name> Names { get; set; }
+
+        // Método para obtener el nombre localizado
+        public string GetLocalizedName(string language = "es")
+        {
+            return Names?.FirstOrDefault(n => n.Language.Name == language)?.Value ?? Name;
+        }
     }
 
     public class MoveVersion
@@ -201,6 +276,27 @@ namespace PKure.Models
 
         [JsonPropertyName("stat")]
         public NamedApiResource StatInfo { get; set; }
+
+        // Detalles localizados de la estadística
+        public StatDetails Details { get; set; }
+    }
+
+    public class StatDetails
+    {
+        [JsonPropertyName("id")]
+        public int Id { get; set; }
+
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [JsonPropertyName("names")]
+        public List<Name> Names { get; set; }
+
+        // Método para obtener el nombre localizado
+        public string GetLocalizedName(string language = "es")
+        {
+            return Names?.FirstOrDefault(n => n.Language.Name == language)?.Value ?? Name;
+        }
     }
 
     public class PokemonType
@@ -210,6 +306,27 @@ namespace PKure.Models
 
         [JsonPropertyName("type")]
         public NamedApiResource Type { get; set; }
+
+        // Detalles localizados del tipo
+        public TypeDetails Details { get; set; }
+    }
+
+    public class TypeDetails
+    {
+        [JsonPropertyName("id")]
+        public int Id { get; set; }
+
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [JsonPropertyName("names")]
+        public List<Name> Names { get; set; }
+
+        // Método para obtener el nombre localizado
+        public string GetLocalizedName(string language = "es")
+        {
+            return Names?.FirstOrDefault(n => n.Language.Name == language)?.Value ?? Name;
+        }
     }
 
     public class PokemonTypePast
@@ -237,6 +354,75 @@ namespace PKure.Models
 
         [JsonPropertyName("evolution_details")]
         public List<EvolutionDetail> EvolutionDetails { get; set; }
+
+        // Detalles localizados de la especie
+        public PokemonSpecies SpeciesDetails { get; set; }
+    }
+
+    public class PokemonSpecies
+    {
+        [JsonPropertyName("id")]
+        public int Id { get; set; }
+
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [JsonPropertyName("names")]
+        public List<Name> Names { get; set; }
+
+        [JsonPropertyName("genera")]
+        public List<Genus> Genera { get; set; }
+
+        [JsonPropertyName("flavor_text_entries")]
+        public List<FlavorTextEntry> FlavorTextEntries { get; set; }
+
+        [JsonPropertyName("evolution_chain")]
+        public EvolutionChainReference EvolutionChainReference { get; set; }
+
+        // Método para obtener el nombre localizado
+        public string GetLocalizedName(string language = "es")
+        {
+            return Names?.FirstOrDefault(n => n.Language.Name == language)?.Value ?? Name;
+        }
+
+        // Método para obtener el género localizado (como "Pokémon Ratón" o "Pokémon Emperador")
+        public string GetLocalizedGenus(string language = "es")
+        {
+            return Genera?.FirstOrDefault(g => g.Language.Name == language)?.Genuss ?? "";
+        }
+
+        // Método para obtener la descripción localizada
+        public string GetLocalizedFlavorText(string language = "es")
+        {
+            return FlavorTextEntries?.FirstOrDefault(f => f.Language.Name == language)?.FlavorText ?? "";
+        }
+    }
+
+    public class Genus
+    {
+        [JsonPropertyName("genus")]
+        public string Genuss { get; set; }
+
+        [JsonPropertyName("language")]
+        public NamedApiResource Language { get; set; }
+    }
+
+    public class FlavorTextEntry
+    {
+        [JsonPropertyName("flavor_text")]
+        public string FlavorText { get; set; }
+
+        [JsonPropertyName("language")]
+        public NamedApiResource Language { get; set; }
+
+        [JsonPropertyName("version")]
+        public NamedApiResource Version { get; set; }
+    }
+
+    public class EvolutionChainReference
+    {
+        [JsonPropertyName("url")]
+        public string Url { get; set; }
     }
 
     public class EvolutionDetail

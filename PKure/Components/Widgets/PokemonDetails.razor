@@ -12,41 +12,41 @@
 
     <div class="pokemon-detail-card-header">
         <div class="pokemon-number">#@Pokemon.Id</div>
-        <img src="@Pokemon.ImageUrl" alt="@Pokemon.Name" class="pokemon-img">
-        <h1 class="pokemon-name">@Pokemon.Name</h1>
-        <p class="pokemon-title">Emperor Pokémon</p>
+        <img src="@Pokemon.ImageUrl" alt="@Pokemon.SpeciesDetails.GetLocalizedName()" class="pokemon-img">
+        <h1 class="pokemon-name">@Pokemon.SpeciesDetails.GetLocalizedName()</h1>
+        <p class="pokemon-title">@Pokemon.SpeciesDetails.GetLocalizedGenus()</p>
         <div class="type-badges">
             @foreach (var type in Pokemon.Types)
             {
-                <div class="type-badge">@type.Type.Name</div>
+                <div class="type-badge">@type.Details.GetLocalizedName()</div>
             }
         </div>
     </div>
 
     <div class="pokemon-detail-card-section">
-        <h2 class="section-title">ABILITIES</h2>
+        <h2 class="section-title">HABILIDADES</h2>
         <div class="abilities">
             @foreach (var ability in Pokemon.Abilities)
             {
-                <div class="ability">@ability.AbilityInfo.Name</div>
+                <div class="ability">@ability.Details.GetLocalizedName()</div>
             }
         </div>
     </div>
 
     <div class="pokemon-detail-card-section">
-        <h2 class="section-title">WEAKNESSES</h2>
+        <h2 class="section-title">DEBILIDADES</h2>
         <div class="weaknesses">
             <!-- Aquí deberías agregar la lógica para mostrar las debilidades -->
         </div>
     </div>
 
     <div class="pokemon-detail-card-section">
-        <h2 class="section-title">STATS</h2>
+        <h2 class="section-title">ESTADÍSTICAS</h2>
         <div class="stats-container">
             @foreach (var stat in Pokemon.Stats)
             {
                 <div class="stat-row">
-                    <div class="stat-name">@stat.StatInfo.Name</div>
+                    <div class="stat-name">@stat.Details.GetLocalizedName()</div>
                     <div class="stat-bar-container">
                         <div class="stat-bar" style="width: @stat.BaseStat%;"></div>
                     </div>
@@ -57,7 +57,7 @@
     </div>
 
     <div class="pokemon-detail-card-section">
-        <h2 class="section-title">EVOLUTION</h2>
+        <h2 class="section-title">EVOLUCIÓN</h2>
         <div class="evolution-chain">
             @if (Pokemon.EvolutionChain?.Chain != null)
             {
@@ -105,12 +105,22 @@
     {
         var stages = new List<(string Name, string Level)>
         {
-            (chainLink.Species.Name, level)
+            (chainLink.SpeciesDetails?.GetLocalizedName() ?? chainLink.Species.Name, level)
         };
 
         foreach (var evolvesTo in chainLink.EvolvesTo)
         {
-            stages.AddRange(GetEvolutionStages(evolvesTo, "Lvl " + evolvesTo.Species.Name)); // Aquí deberías agregar la lógica para obtener el nivel de evolución
+            string evolutionLevel = "Lvl ";
+            if (evolvesTo.EvolutionDetails?.FirstOrDefault()?.MinLevel != null)
+            {
+                evolutionLevel += evolvesTo.EvolutionDetails.First().MinLevel.Value.ToString();
+            }
+            else
+            {
+                evolutionLevel += evolvesTo.SpeciesDetails?.GetLocalizedName() ?? evolvesTo.Species.Name;
+            }
+
+            stages.AddRange(GetEvolutionStages(evolvesTo, evolutionLevel));
         }
 
         return stages;

@@ -1,8 +1,8 @@
 ﻿@using PKure.Models
 <div @onclick="HandleClick" class="poke-card @(IsSelected ? "selected" : "")">
-    <img src="@Pokemon.ImageUrl" alt="@Pokemon.Name" />
-    <h3>@Pokemon.Name</h3>
-    <p>Tipo: @string.Join(", ", Pokemon.Types.Select(t => t.Type.Name))</p>
+    <img src="@Pokemon.ImageUrl" alt="@Pokemon.SpeciesDetails.GetLocalizedName()" />
+    <h3>@Pokemon.SpeciesDetails.GetLocalizedName()</h3>
+    <p>Tipo: @string.Join(", ", Pokemon.Types.Select(t => t.Details.GetLocalizedName()))</p>
 </div>
 
 @code {
