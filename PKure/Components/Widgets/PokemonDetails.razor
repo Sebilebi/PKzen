@@ -45,12 +45,14 @@
     <div class="pokemon-detail-card-section">
         <h2 class="section-title">ESTADÍSTICAS</h2>
         <div class="stats-container">
-            @foreach (var stat in Pokemon.Stats)
+            @for (int i = 0; i < Pokemon.Stats.Count; i++)
             {
+                var stat = Pokemon.Stats[i];
+                var (percentage, color) = GetStatPercentageAndColor(i, stat.BaseStat);
                 <div class="stat-row">
                     <div class="stat-name">@stat.Details.GetLocalizedName(LanguageService.CurrentLanguage)</div>
                     <div class="stat-bar-container">
-                        <div class="stat-bar" style="width: @stat.BaseStat%;"></div>
+                        <div class="stat-bar" style="width: @percentage%; background-color: @color;"></div>
                     </div>
                     <div class="stat-value">@stat.BaseStat</div>
                 </div>
@@ -97,34 +99,4 @@
 
     [Parameter]
     public EventCallback OnClose { get; set; }
-
-    private async Task HandleClose()
-    {
-        await OnClose.InvokeAsync();
-    }
-
-    private List<(string Name, string Level)> GetEvolutionStages(EvolutionChainLink chainLink, string level = "")
-    {
-        var stages = new List<(string Name, string Level)>
-        {
-            (chainLink.SpeciesDetails?.GetLocalizedName(LanguageService.CurrentLanguage) ?? chainLink.Species.Name, level)
-        };
-
-        foreach (var evolvesTo in chainLink.EvolvesTo)
-        {
-            string evolutionLevel = "Lvl ";
-            if (evolvesTo.EvolutionDetails?.FirstOrDefault()?.MinLevel != null)
-            {
-                evolutionLevel += evolvesTo.EvolutionDetails.First().MinLevel.Value.ToString();
-            }
-            else
-            {
-                evolutionLevel += evolvesTo.SpeciesDetails?.GetLocalizedName(LanguageService.CurrentLanguage) ?? evolvesTo.Species.Name;
-            }
-
-            stages.AddRange(GetEvolutionStages(evolvesTo, evolutionLevel));
-        }
-
-        return stages;
-    }
 }
