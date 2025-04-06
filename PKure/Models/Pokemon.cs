@@ -63,6 +63,8 @@ namespace PKure.Models
 
         // Propiedad de conveniencia para obtener la imagen principal.
         public string ImageUrl => Sprites?.FrontDefault;
+        // Propiedad de conveniencia para obtener la imagen principal (ahora usa official-artwork)
+        public string ImageUrlOfficial => Sprites?.Other?.OfficialArtwork?.FrontDefault ?? Sprites?.FrontDefault;
 
         // Propiedades localizadas
         public PokemonSpecies SpeciesDetails { get; set; }
