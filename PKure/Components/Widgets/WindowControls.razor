@@ -1,4 +1,4 @@
-﻿<div class="window-controls">
+﻿<div class="window-controls" @onmousedown:stopPropagation>
     @if (isMinimize)
     {
         <button class="minimize" title="Minimizar" @onclick="HandleMinimize">
