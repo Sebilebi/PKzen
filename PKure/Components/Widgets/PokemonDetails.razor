@@ -26,103 +26,56 @@
     <div class="pokemon-detail-card-section">
         <h2 class="section-title">ABILITIES</h2>
         <div class="abilities">
-            <div class="ability">Sand Veil</div>
-            <div class="ability">Rough Skin</div>
+            @foreach (var ability in Pokemon.Abilities)
+            {
+                <div class="ability">@ability.AbilityInfo.Name</div>
+            }
         </div>
     </div>
 
     <div class="pokemon-detail-card-section">
         <h2 class="section-title">WEAKNESSES</h2>
         <div class="weaknesses">
-            <div class="weakness-badge">Ice</div>
-            <div class="weakness-badge">Dragon</div>
-            <div class="weakness-badge">Fairy</div>
-            <div class="weakness-badge">Water</div>
-            <div class="weakness-badge">Grass</div>
+            <!-- Aquí deberías agregar la lógica para mostrar las debilidades -->
         </div>
     </div>
 
     <div class="pokemon-detail-card-section">
         <h2 class="section-title">STATS</h2>
         <div class="stats-container">
-            <div class="stat-row">
-                <div class="stat-name">HP</div>
-                <div class="stat-bar-container">
-                    <div class="stat-bar stat-high" style="width: 108%;"></div>
+            @foreach (var stat in Pokemon.Stats)
+            {
+                <div class="stat-row">
+                    <div class="stat-name">@stat.StatInfo.Name</div>
+                    <div class="stat-bar-container">
+                        <div class="stat-bar" style="width: @stat.BaseStat%;"></div>
+                    </div>
+                    <div class="stat-value">@stat.BaseStat</div>
                 </div>
-                <div class="stat-value">108</div>
-            </div>
-            <div class="stat-row">
-                <div class="stat-name">Attack</div>
-                <div class="stat-bar-container">
-                    <div class="stat-bar stat-very-high" style="width: 130%;"></div>
-                </div>
-                <div class="stat-value">130</div>
-            </div>
-            <div class="stat-row">
-                <div class="stat-name">Defense</div>
-                <div class="stat-bar-container">
-                    <div class="stat-bar stat-high" style="width: 95%;"></div>
-                </div>
-                <div class="stat-value">95</div>
-            </div>
-            <div class="stat-row">
-                <div class="stat-name">Sp. Atk</div>
-                <div class="stat-bar-container">
-                    <div class="stat-bar stat-medium" style="width: 80%;"></div>
-                </div>
-                <div class="stat-value">80</div>
-            </div>
-            <div class="stat-row">
-                <div class="stat-name">Sp. Def</div>
-                <div class="stat-bar-container">
-                    <div class="stat-bar stat-medium" style="width: 85%;"></div>
-                </div>
-                <div class="stat-value">85</div>
-            </div>
-            <div class="stat-row">
-                <div class="stat-name">Speed</div>
-                <div class="stat-bar-container">
-                    <div class="stat-bar stat-high" style="width: 102%;"></div>
-                </div>
-                <div class="stat-value">102</div>
-            </div>
-            <div class="stat-row">
-                <div class="stat-name">Total</div>
-                <div class="stat-bar-container">
-                    <div class="stat-bar stat-max" style="width: 100%;"></div>
-                </div>
-                <div class="stat-value">600</div>
-            </div>
+            }
         </div>
     </div>
 
     <div class="pokemon-detail-card-section">
         <h2 class="section-title">EVOLUTION</h2>
         <div class="evolution-chain">
-            <div class="evolution-stage">
-                <div class="evolution-img">
-                    <div class="evolution-sprite">G</div>
-                </div>
-                <div class="evolution-name">Gible</div>
-                <div class="evolution-level">Lvl 16</div>
-            </div>
-            <div class="evolution-arrow">›</div>
-            <div class="evolution-stage">
-                <div class="evolution-img">
-                    <div class="evolution-sprite">G</div>
-                </div>
-                <div class="evolution-name">Gabite</div>
-                <div class="evolution-level">Lvl 35</div>
-            </div>
-            <div class="evolution-arrow">›</div>
-            <div class="evolution-stage">
-                <div class="evolution-img active">
-                    <div class="evolution-sprite">G</div>
-                </div>
-                <div class="evolution-name">Garchomp</div>
-                <div class="evolution-level"></div>
-            </div>
+            @if (Pokemon.EvolutionChain?.Chain != null)
+            {
+                @foreach (var stage in GetEvolutionStages(Pokemon.EvolutionChain.Chain))
+                {
+                    <div class="evolution-stage">
+                        <div class="evolution-img">
+                            <div class="evolution-sprite">@stage.Name[0]</div>
+                        </div>
+                        <div class="evolution-name">@stage.Name</div>
+                        <div class="evolution-level">@stage.Level</div>
+                    </div>
+                    @if (stage != GetEvolutionStages(Pokemon.EvolutionChain.Chain).Last())
+                    {
+                        <div class="evolution-arrow">›</div>
+                    }
+                }
+            }
         </div>
     </div>
 
@@ -146,5 +99,20 @@
     private async Task HandleClose()
     {
         await OnClose.InvokeAsync();
+    }
+
+    private List<(string Name, string Level)> GetEvolutionStages(EvolutionChainLink chainLink, string level = "")
+    {
+        var stages = new List<(string Name, string Level)>
+        {
+            (chainLink.Species.Name, level)
+        };
+
+        foreach (var evolvesTo in chainLink.EvolvesTo)
+        {
+            stages.AddRange(GetEvolutionStages(evolvesTo, "Lvl " + evolvesTo.Species.Name)); // Aquí deberías agregar la lógica para obtener el nivel de evolución
+        }
+
+        return stages;
     }
 }

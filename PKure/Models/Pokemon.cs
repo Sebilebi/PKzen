@@ -16,6 +16,15 @@ namespace PKure.Models
         [JsonPropertyName("sprites")]
         public Sprites Sprites { get; set; }
 
+        [JsonPropertyName("abilities")]
+        public List<Ability> Abilities { get; set; }
+
+        [JsonPropertyName("stats")]
+        public List<Stat> Stats { get; set; }
+
+        [JsonPropertyName("evolution_chain")]
+        public EvolutionChain EvolutionChain { get; set; }
+
         // Propiedad de conveniencia para obtener la imagen principal.
         public string ImageUrl => Sprites?.FrontDefault;
     }
@@ -42,5 +51,56 @@ namespace PKure.Models
     {
         [JsonPropertyName("front_default")]
         public string FrontDefault { get; set; }
+    }
+
+    public class Ability
+    {
+        [JsonPropertyName("ability")]
+        public AbilityInfo AbilityInfo { get; set; }
+    }
+
+    public class AbilityInfo
+    {
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+    }
+
+    public class Stat
+    {
+        [JsonPropertyName("base_stat")]
+        public int BaseStat { get; set; }
+
+        [JsonPropertyName("stat")]
+        public StatInfo StatInfo { get; set; }
+    }
+
+    public class StatInfo
+    {
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+    }
+
+    public class EvolutionChain
+    {
+        [JsonPropertyName("chain")]
+        public EvolutionChainLink Chain { get; set; }
+    }
+
+    public class EvolutionChainLink
+    {
+        [JsonPropertyName("species")]
+        public Species Species { get; set; }
+
+        [JsonPropertyName("evolves_to")]
+        public List<EvolutionChainLink> EvolvesTo { get; set; }
+    }
+
+    public class Species
+    {
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [JsonPropertyName("url")]
+        public string Url { get; set; }
     }
 }
