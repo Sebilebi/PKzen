@@ -1,4 +1,4 @@
-﻿@using PKure.Models.ViewModel
+﻿@using PKure.Models
 
 <div class="pokemon-detail-card">
     <!-- Close button -->
@@ -18,7 +18,7 @@
         <div class="type-badges">
             @foreach (var type in Pokemon.Types)
             {
-                <div class="type-badge">@type</div>
+                <div class="type-badge">@type.Type.Name</div>
             }
         </div>
     </div>
@@ -138,7 +138,7 @@
 
 @code {
     [Parameter]
-    public PokemonDetailViewModel Pokemon { get; set; }
+    public Pokemon Pokemon { get; set; }
 
     [Parameter]
     public EventCallback OnClose { get; set; }

@@ -1,17 +1,16 @@
-﻿@using PKure.Models.ViewModel
-
+﻿@using PKure.Models
 <div @onclick="HandleClick" class="poke-card @(IsSelected ? "selected" : "")">
     <img src="@Pokemon.ImageUrl" alt="@Pokemon.Name" />
     <h3>@Pokemon.Name</h3>
-    <p>Tipo: @Pokemon.Type</p>
+    <p>Tipo: @string.Join(", ", Pokemon.Types.Select(t => t.Type.Name))</p>
 </div>
 
 @code {
     [Parameter]
-    public PokemonViewModel Pokemon { get; set; }
+    public Pokemon Pokemon { get; set; }
 
     [Parameter]
-    public EventCallback<PokemonViewModel> OnClick { get; set; }
+    public EventCallback<Pokemon> OnClick { get; set; }
 
     [Parameter]
     public bool IsSelected { get; set; }

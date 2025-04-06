@@ -1,6 +1,4 @@
-﻿using PKure.Mapping;
-using PKure.Models;
-using PKure.Models.ViewModel;
+﻿using PKure.Models;
 using System.Net.Http;
 using System.Net.Http.Json;
 
@@ -16,18 +14,18 @@ namespace PKure.Services
         }
 
         // Obtiene los primeros 20 Pokémon y los mapea a PokemonViewModel.
-        public async Task<List<PokemonViewModel>> GetFirst20PokemonAsync()
+        public async Task<List<Pokemon>> GetFirst20PokemonAsync()
         {
             var listResponse = await _httpClient.GetFromJsonAsync<PokemonListResponse>(PokeApiEndpoints.PokemonList);
             if (listResponse?.Results == null)
-                return new List<PokemonViewModel>();
+                return new List<Pokemon>();
 
             var detailTasks = listResponse.Results
                 .Select(item => _httpClient.GetFromJsonAsync<Pokemon>(item.Url))
                 .ToArray();
 
             var apiPokemons = await Task.WhenAll(detailTasks);
-            return apiPokemons.Select(p => PokemonMapper.MapToViewModel(p)).ToList();
+            return apiPokemons.ToList();
         }
     }
 }
