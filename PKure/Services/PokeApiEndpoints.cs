@@ -8,7 +8,6 @@
         public const string PokemonList = BaseUrl + "pokemon/?limit=20";
 
         // Método para obtener el endpoint de detalle de un Pokémon por nombre o id.
-        public static string GetPokemonDetailUrl(string nameOrId)
-            => $"{BaseUrl}pokemon/{nameOrId}";
+        public static string GetPokemonDetailUrl(string nameOrId) => $"{BaseUrl}pokemon/{nameOrId}";
     }
 }

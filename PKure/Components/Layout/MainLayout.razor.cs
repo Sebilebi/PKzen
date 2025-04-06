@@ -54,40 +54,6 @@ namespace PKure.Components.Layout
             }
         }
 
-        private void HandleMinimize()
-        {
-            var window = GetCurrentWindow();
-            if (window != null)
-            {
-                SystemCommands.MinimizeWindow(window);
-            }
-        }
-
-        private void HandleMaximizeRestore()
-        {
-            var window = GetCurrentWindow();
-            if (window != null)
-            {
-                if (window.WindowState == WindowState.Normal)
-                {
-                    SystemCommands.MaximizeWindow(window);
-                }
-                else
-                {
-                    SystemCommands.RestoreWindow(window);
-                }
-            }
-        }
-
-        private void HandleClose()
-        {
-            var window = GetCurrentWindow();
-            if (window != null)
-            {
-                SystemCommands.CloseWindow(window);
-            }
-        }
-
         /// <summary>
         /// Devuelve "active" si la ruta actual coincide con href.
         /// </summary>
