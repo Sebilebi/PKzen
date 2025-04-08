@@ -5,7 +5,15 @@
 <div @onclick="HandleClick" class="poke-card @(IsSelected ? "selected" : "")">
     <img src="@Pokemon.ImageUrl" alt="@Pokemon.SpeciesDetails.GetLocalizedName(LanguageService.CurrentLanguage)" />
     <h3>@Pokemon.SpeciesDetails.GetLocalizedName(LanguageService.CurrentLanguage)</h3>
-    <p>Tipo: @string.Join(", ", Pokemon.Types.Select(t => t.Details.GetLocalizedName(LanguageService.CurrentLanguage)))</p>
+    <div class="type-icons">
+        @foreach (var type in Pokemon.Types)
+        {
+            <img src="@type.Details.TypeSprite"
+                 alt="@type.Details.GetLocalizedName(LanguageService.CurrentLanguage)"
+                 title="@type.Details.GetLocalizedName(LanguageService.CurrentLanguage)"
+                 class="type-icon" />
+        }
+    </div>
 </div>
 
 @code {

@@ -34,3 +34,15 @@
     border: 2px solid var(--color-accent);
     box-shadow: var(--shadow-action-neon);
 }
+
+.type-icons {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+    .type-icons .type-icon {
+        height: 20px;
+        object-fit: scale-down;
+    }

@@ -329,6 +329,8 @@ namespace PKure.Models
         {
             return Names?.FirstOrDefault(n => n.Language.Name == language)?.Value ?? Name;
         }
+
+        public string TypeSprite => $"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/{Id}.png";
     }
 
     public class PokemonTypePast
