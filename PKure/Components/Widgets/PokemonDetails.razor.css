@@ -62,6 +62,18 @@
     text-transform: uppercase;
 }
 
+.type-icons {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 15px;
+}
+
+    .type-icons .type-icon {
+        height: 20px;
+        object-fit: scale-down;
+    }
+
 .pokemon-detail-card-section {
     padding: 15px;
     border-bottom: var(--border) solid var(--color-base-300);
