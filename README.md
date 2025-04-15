@@ -1,6 +1,6 @@
-# PKure - Tu Herramienta Completa para Pokémon
+# PKzen - Tu Herramienta Completa para Pokémon
 
-PKure es una aplicación multifuncional diseñada para entrenadores Pokémon que buscan optimizar su experiencia de juego. Esta herramienta reúne en un solo lugar todo lo que necesitas para tus aventuras Pokémon.
+PKzen es una aplicación multifuncional diseñada para entrenadores Pokémon que buscan optimizar su experiencia de juego. Esta herramienta reúne en un solo lugar todo lo que necesitas para tus aventuras Pokémon.
 
 > **Nota importante:** La mayoría de las características mencionadas en este documento están actualmente en desarrollo y se implementarán gradualmente. Este README describe la visión completa del proyecto.
 
