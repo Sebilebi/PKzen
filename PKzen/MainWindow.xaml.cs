@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Windows;
 
-namespace PKure
+namespace PKzen
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

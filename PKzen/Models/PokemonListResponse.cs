@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace PKure.Models
+namespace PKzen.Models
 {
     public class PokemonListResponse
     {

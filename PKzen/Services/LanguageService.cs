@@ -1,4 +1,4 @@
-﻿namespace PKure.Services
+﻿namespace PKzen.Services
 {
     public class LanguageService
     {

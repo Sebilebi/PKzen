@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Components;
-using PKure.Models;
-using PKure.Services;
+using PKzen.Models;
+using PKzen.Services;
 
-namespace PKure.Components.Pages
+namespace PKzen.Components.Pages
 {
     public partial class Pokedex : ComponentBase
     {

@@ -1,9 +1,9 @@
-﻿using PKure.Models;
+﻿using PKzen.Models;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.RegularExpressions;
 
-namespace PKure.Services
+namespace PKzen.Services
 {
     public class PokeApiService
     {

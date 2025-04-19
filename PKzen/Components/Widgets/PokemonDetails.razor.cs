@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
-using PKure.Models;
+using PKzen.Models;
 
-namespace PKure.Components.Widgets
+namespace PKzen.Components.Widgets
 {
     public partial class PokemonDetails
     {

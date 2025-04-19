@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.35828.75
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PKzen", "PKure\PKzen.csproj", "{A2D266F0-5B49-41A7-90C4-C9D6FA3F5E4D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PKzen", "PKzen\PKzen.csproj", "{A2D266F0-5B49-41A7-90C4-C9D6FA3F5E4D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,10 +1,10 @@
 ﻿<!-- El Background es "color-background" de /wwwroot/app.css -->
-<Window x:Class="PKure.MainWindow"
+<Window x:Class="PKzen.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PKure"
+        xmlns:local="clr-namespace:PKzen"
         xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation/blazor"
         xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
         mc:Ignorable="d"

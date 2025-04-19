@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Interop;
 
-namespace PKure.Components.Layout
+namespace PKzen.Components.Layout
 {
     public partial class MainLayout
     {

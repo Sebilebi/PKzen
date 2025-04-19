@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace PKure
+namespace PKzen
 {
     /// <summary>
     /// Interaction logic for App.xaml

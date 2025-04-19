@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace PKure.Components.Widgets
+namespace PKzen.Components.Widgets
 {
     public partial class WindowControls
     {
