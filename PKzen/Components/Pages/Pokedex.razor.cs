@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
-using PKzen.Models;
+using PKzen.Models.OLD;
 using PKzen.Services;
 
 namespace PKzen.Components.Pages

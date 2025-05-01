@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace PKzen.Models
+namespace PKzen.Models.OLD
 {
     public class Pokemon_OLD
     {
