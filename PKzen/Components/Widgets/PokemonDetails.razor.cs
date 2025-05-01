@@ -12,7 +12,7 @@ namespace PKzen.Components.Widgets
             await OnClose.InvokeAsync();
         }
 
-        private List<(string Name, string Level)> GetEvolutionStages(EvolutionChainLink chainLink, string level = "")
+        private List<(string Name, string Level)> GetEvolutionStages(EvolutionChainLink_OLD chainLink, string level = "")
         {
             var stages = new List<(string Name, string Level)>
             {

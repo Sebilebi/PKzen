@@ -23,11 +23,11 @@ namespace PKzen.Services
         }
 
         // Obtiene los primeros 20 Pokémon con datos localizados.
-        public async Task<List<Pokemon>> GetFirst20PokemonAsync()
+        public async Task<List<Pokemon_OLD>> GetFirst20PokemonAsync()
         {
             var listResponse = await _httpClient.GetFromJsonAsync<PokemonListResponse>(PokeApiEndpoints.PokemonList);
             if (listResponse?.Results == null)
-                return new List<Pokemon>();
+                return new List<Pokemon_OLD>();
 
             var detailTasks = listResponse.Results
                 .Select(item => GetPokemonWithLocalizedDataAsync(item.Name))
@@ -38,22 +38,22 @@ namespace PKzen.Services
         }
 
         // Obtiene un Pokémon por nombre o id con datos localizados.
-        public async Task<Pokemon> GetPokemonWithLocalizedDataAsync(string nameOrId)
+        public async Task<Pokemon_OLD> GetPokemonWithLocalizedDataAsync(string nameOrId)
         {
             // Obtener datos básicos del Pokémon
-            var pokemon = await _httpClient.GetFromJsonAsync<Pokemon>(PokeApiEndpoints.GetPokemonDetailUrl(nameOrId));
+            var pokemon = await _httpClient.GetFromJsonAsync<Pokemon_OLD>(PokeApiEndpoints.GetPokemonDetailUrl(nameOrId));
             if (pokemon == null)
                 return null;
 
             // Obtener datos de la especie (contiene nombres localizados)
             var speciesUrl = pokemon.Species.Url;
-            var species = await _httpClient.GetFromJsonAsync<PokemonSpecies>(speciesUrl);
+            var species = await _httpClient.GetFromJsonAsync<PokemonSpecies_OLD>(speciesUrl);
             pokemon.SpeciesDetails = species;
 
             // Obtener datos localizados para cada tipo
             var typeTasks = pokemon.Types.Select(async type =>
             {
-                var typeDetails = await _httpClient.GetFromJsonAsync<TypeDetails>(type.Type.Url);
+                var typeDetails = await _httpClient.GetFromJsonAsync<TypeDetails_OLD>(type.Type.Url);
                 type.Details = typeDetails;
                 return type;
             }).ToArray();
@@ -62,7 +62,7 @@ namespace PKzen.Services
             // Obtener datos localizados para cada habilidad
             var abilityTasks = pokemon.Abilities.Select(async ability =>
             {
-                var abilityDetails = await _httpClient.GetFromJsonAsync<AbilityDetails>(ability.AbilityInfo.Url);
+                var abilityDetails = await _httpClient.GetFromJsonAsync<AbilityDetails_OLD>(ability.AbilityInfo.Url);
                 ability.Details = abilityDetails;
                 return ability;
             }).ToArray();
@@ -71,7 +71,7 @@ namespace PKzen.Services
             // Obtener datos localizados para cada estadística
             var statTasks = pokemon.Stats.Select(async stat =>
             {
-                var statDetails = await _httpClient.GetFromJsonAsync<StatDetails>(stat.StatInfo.Url);
+                var statDetails = await _httpClient.GetFromJsonAsync<StatDetails_OLD>(stat.StatInfo.Url);
                 stat.Details = statDetails;
                 return stat;
             }).ToArray();
@@ -81,7 +81,7 @@ namespace PKzen.Services
             if (species.EvolutionChainReference != null)
             {
                 var evolutionChainId = ExtractIdFromUrl(species.EvolutionChainReference.Url);
-                var evolutionChain = await _httpClient.GetFromJsonAsync<EvolutionChain>(
+                var evolutionChain = await _httpClient.GetFromJsonAsync<EvolutionChain_OLD>(
                     PokeApiEndpoints.GetEvolutionChainUrl(evolutionChainId));
 
                 pokemon.EvolutionChain = evolutionChain;
@@ -101,11 +101,11 @@ namespace PKzen.Services
         }
 
         // Método para enriquecer la cadena de evolución con datos localizados
-        private async Task EnrichEvolutionChainWithLocalizedData(EvolutionChainLink chainLink)
+        private async Task EnrichEvolutionChainWithLocalizedData(EvolutionChainLink_OLD chainLink)
         {
             // Obtener datos de la especie
             var speciesId = ExtractIdFromUrl(chainLink.Species.Url);
-            var species = await _httpClient.GetFromJsonAsync<PokemonSpecies>(
+            var species = await _httpClient.GetFromJsonAsync<PokemonSpecies_OLD>(
                 PokeApiEndpoints.GetPokemonSpeciesUrl(speciesId));
             chainLink.SpeciesDetails = species;
 

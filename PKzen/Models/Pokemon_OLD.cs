@@ -2,7 +2,7 @@
 
 namespace PKzen.Models
 {
-    public class Pokemon
+    public class Pokemon_OLD
     {
         [JsonPropertyName("id")]
         public int Id { get; set; }
@@ -26,40 +26,40 @@ namespace PKzen.Models
         public int Weight { get; set; }
 
         [JsonPropertyName("abilities")]
-        public List<Ability> Abilities { get; set; }
+        public List<Ability_OLD> Abilities { get; set; }
 
         [JsonPropertyName("forms")]
-        public List<NamedApiResource> Forms { get; set; }
+        public List<NamedApiResource_OLD> Forms { get; set; }
 
         [JsonPropertyName("game_indices")]
-        public List<VersionGameIndex> GameIndices { get; set; }
+        public List<VersionGameIndex_OLD> GameIndices { get; set; }
 
         [JsonPropertyName("held_items")]
-        public List<HeldItem> HeldItems { get; set; }
+        public List<HeldItem_OLD> HeldItems { get; set; }
 
         [JsonPropertyName("location_area_encounters")]
         public string LocationAreaEncounters { get; set; }
 
         [JsonPropertyName("moves")]
-        public List<PokemonMove> Moves { get; set; }
+        public List<PokemonMove_OLD> Moves { get; set; }
 
         [JsonPropertyName("sprites")]
-        public Sprites Sprites { get; set; }
+        public Sprites_OLD Sprites { get; set; }
 
         [JsonPropertyName("species")]
-        public NamedApiResource Species { get; set; }
+        public NamedApiResource_OLD Species { get; set; }
 
         [JsonPropertyName("stats")]
-        public List<Stat> Stats { get; set; }
+        public List<Stat_OLD> Stats { get; set; }
 
         [JsonPropertyName("types")]
-        public List<PokemonType> Types { get; set; }
+        public List<PokemonType_OLD> Types { get; set; }
 
         [JsonPropertyName("past_types")]
-        public List<PokemonTypePast> PastTypes { get; set; }
+        public List<PokemonTypePast_OLD> PastTypes { get; set; }
 
         [JsonPropertyName("evolution_chain")]
-        public EvolutionChain EvolutionChain { get; set; }
+        public EvolutionChain_OLD EvolutionChain { get; set; }
 
         // Propiedad de conveniencia para obtener la imagen principal.
         public string ImageUrl => Sprites?.FrontDefault;
@@ -67,10 +67,10 @@ namespace PKzen.Models
         public string ImageUrlOfficial => Sprites?.Other?.OfficialArtwork?.FrontDefault ?? Sprites?.FrontDefault;
 
         // Propiedades localizadas
-        public PokemonSpecies SpeciesDetails { get; set; }
+        public PokemonSpecies_OLD SpeciesDetails { get; set; }
     }
 
-    public class Ability
+    public class Ability_OLD
     {
         [JsonPropertyName("is_hidden")]
         public bool IsHidden { get; set; }
@@ -79,13 +79,13 @@ namespace PKzen.Models
         public int Slot { get; set; }
 
         [JsonPropertyName("ability")]
-        public NamedApiResource AbilityInfo { get; set; }
+        public NamedApiResource_OLD AbilityInfo { get; set; }
 
         // Detalles localizados de la habilidad
-        public AbilityDetails Details { get; set; }
+        public AbilityDetails_OLD Details { get; set; }
     }
 
-    public class AbilityDetails
+    public class AbilityDetails_OLD
     {
         [JsonPropertyName("id")]
         public int Id { get; set; }
@@ -94,10 +94,10 @@ namespace PKzen.Models
         public string Name { get; set; }
 
         [JsonPropertyName("names")]
-        public List<Name> Names { get; set; }
+        public List<Name_OLD> Names { get; set; }
 
         [JsonPropertyName("effect_entries")]
-        public List<EffectEntry> EffectEntries { get; set; }
+        public List<EffectEntry_OLD> EffectEntries { get; set; }
 
         // Método para obtener el nombre localizado
         public string GetLocalizedName(string language)
@@ -112,7 +112,7 @@ namespace PKzen.Models
         }
     }
 
-    public class EffectEntry
+    public class EffectEntry_OLD
     {
         [JsonPropertyName("effect")]
         public string Effect { get; set; }
@@ -121,19 +121,19 @@ namespace PKzen.Models
         public string ShortEffect { get; set; }
 
         [JsonPropertyName("language")]
-        public NamedApiResource Language { get; set; }
+        public NamedApiResource_OLD Language { get; set; }
     }
 
-    public class Name
+    public class Name_OLD
     {
         [JsonPropertyName("name")]
         public string Value { get; set; }
 
         [JsonPropertyName("language")]
-        public NamedApiResource Language { get; set; }
+        public NamedApiResource_OLD Language { get; set; }
     }
 
-    public class NamedApiResource
+    public class NamedApiResource_OLD
     {
         [JsonPropertyName("name")]
         public string Name { get; set; }
@@ -142,46 +142,46 @@ namespace PKzen.Models
         public string Url { get; set; }
     }
 
-    public class VersionGameIndex
+    public class VersionGameIndex_OLD
     {
         [JsonPropertyName("game_index")]
         public int GameIndex { get; set; }
 
         [JsonPropertyName("version")]
-        public NamedApiResource Version { get; set; }
+        public NamedApiResource_OLD Version { get; set; }
     }
 
-    public class HeldItem
+    public class HeldItem_OLD
     {
         [JsonPropertyName("item")]
-        public NamedApiResource Item { get; set; }
+        public NamedApiResource_OLD Item { get; set; }
 
         [JsonPropertyName("version_details")]
-        public List<HeldItemVersion> VersionDetails { get; set; }
+        public List<HeldItemVersion_OLD> VersionDetails { get; set; }
     }
 
-    public class HeldItemVersion
+    public class HeldItemVersion_OLD
     {
         [JsonPropertyName("version")]
-        public NamedApiResource Version { get; set; }
+        public NamedApiResource_OLD Version { get; set; }
 
         [JsonPropertyName("rarity")]
         public int Rarity { get; set; }
     }
 
-    public class PokemonMove
+    public class PokemonMove_OLD
     {
         [JsonPropertyName("move")]
-        public NamedApiResource Move { get; set; }
+        public NamedApiResource_OLD Move { get; set; }
 
         [JsonPropertyName("version_group_details")]
-        public List<MoveVersion> VersionGroupDetails { get; set; }
+        public List<MoveVersion_OLD> VersionGroupDetails { get; set; }
 
         // Detalles localizados del movimiento
-        public MoveDetails Details { get; set; }
+        public MoveDetails_OLD Details { get; set; }
     }
 
-    public class MoveDetails
+    public class MoveDetails_OLD
     {
         [JsonPropertyName("id")]
         public int Id { get; set; }
@@ -190,7 +190,7 @@ namespace PKzen.Models
         public string Name { get; set; }
 
         [JsonPropertyName("names")]
-        public List<Name> Names { get; set; }
+        public List<Name_OLD> Names { get; set; }
 
         // Método para obtener el nombre localizado
         public string GetLocalizedName(string language)
@@ -199,19 +199,19 @@ namespace PKzen.Models
         }
     }
 
-    public class MoveVersion
+    public class MoveVersion_OLD
     {
         [JsonPropertyName("move_learn_method")]
-        public NamedApiResource MoveLearnMethod { get; set; }
+        public NamedApiResource_OLD MoveLearnMethod { get; set; }
 
         [JsonPropertyName("version_group")]
-        public NamedApiResource VersionGroup { get; set; }
+        public NamedApiResource_OLD VersionGroup { get; set; }
 
         [JsonPropertyName("level_learned_at")]
         public int LevelLearnedAt { get; set; }
     }
 
-    public class Sprites
+    public class Sprites_OLD
     {
         [JsonPropertyName("front_default")]
         public string FrontDefault { get; set; }
@@ -238,22 +238,22 @@ namespace PKzen.Models
         public string BackShinyFemale { get; set; }
 
         [JsonPropertyName("other")]
-        public OtherSprites Other { get; set; }
+        public OtherSprites_OLD Other { get; set; }
 
         [JsonPropertyName("versions")]
-        public Dictionary<string, Dictionary<string, Sprites>> Versions { get; set; }
+        public Dictionary<string, Dictionary<string, Sprites_OLD>> Versions { get; set; }
     }
 
-    public class OtherSprites
+    public class OtherSprites_OLD
     {
         [JsonPropertyName("dream_world")]
-        public DreamWorld DreamWorld { get; set; }
+        public DreamWorld_OLD DreamWorld { get; set; }
 
         [JsonPropertyName("official-artwork")]
-        public OfficialArtwork OfficialArtwork { get; set; }
+        public OfficialArtwork_OLD OfficialArtwork { get; set; }
     }
 
-    public class DreamWorld
+    public class DreamWorld_OLD
     {
         [JsonPropertyName("front_default")]
         public string FrontDefault { get; set; }
@@ -262,13 +262,13 @@ namespace PKzen.Models
         public string FrontFemale { get; set; }
     }
 
-    public class OfficialArtwork
+    public class OfficialArtwork_OLD
     {
         [JsonPropertyName("front_default")]
         public string FrontDefault { get; set; }
     }
 
-    public class Stat
+    public class Stat_OLD
     {
         [JsonPropertyName("base_stat")]
         public int BaseStat { get; set; }
@@ -277,13 +277,13 @@ namespace PKzen.Models
         public int Effort { get; set; }
 
         [JsonPropertyName("stat")]
-        public NamedApiResource StatInfo { get; set; }
+        public NamedApiResource_OLD StatInfo { get; set; }
 
         // Detalles localizados de la estadística
-        public StatDetails Details { get; set; }
+        public StatDetails_OLD Details { get; set; }
     }
 
-    public class StatDetails
+    public class StatDetails_OLD
     {
         [JsonPropertyName("id")]
         public int Id { get; set; }
@@ -292,7 +292,7 @@ namespace PKzen.Models
         public string Name { get; set; }
 
         [JsonPropertyName("names")]
-        public List<Name> Names { get; set; }
+        public List<Name_OLD> Names { get; set; }
 
         // Método para obtener el nombre localizado
         public string GetLocalizedName(string language)
@@ -301,19 +301,19 @@ namespace PKzen.Models
         }
     }
 
-    public class PokemonType
+    public class PokemonType_OLD
     {
         [JsonPropertyName("slot")]
         public int Slot { get; set; }
 
         [JsonPropertyName("type")]
-        public NamedApiResource Type { get; set; }
+        public NamedApiResource_OLD Type { get; set; }
 
         // Detalles localizados del tipo
-        public TypeDetails Details { get; set; }
+        public TypeDetails_OLD Details { get; set; }
     }
 
-    public class TypeDetails
+    public class TypeDetails_OLD
     {
         [JsonPropertyName("id")]
         public int Id { get; set; }
@@ -322,7 +322,7 @@ namespace PKzen.Models
         public string Name { get; set; }
 
         [JsonPropertyName("names")]
-        public List<Name> Names { get; set; }
+        public List<Name_OLD> Names { get; set; }
 
         // Método para obtener el nombre localizado
         public string GetLocalizedName(string language)
@@ -333,37 +333,37 @@ namespace PKzen.Models
         public string TypeSprite => $"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/{Id}.png";
     }
 
-    public class PokemonTypePast
+    public class PokemonTypePast_OLD
     {
         [JsonPropertyName("generation")]
-        public NamedApiResource Generation { get; set; }
+        public NamedApiResource_OLD Generation { get; set; }
 
         [JsonPropertyName("types")]
-        public List<PokemonType> Types { get; set; }
+        public List<PokemonType_OLD> Types { get; set; }
     }
 
-    public class EvolutionChain
+    public class EvolutionChain_OLD
     {
         [JsonPropertyName("chain")]
-        public EvolutionChainLink Chain { get; set; }
+        public EvolutionChainLink_OLD Chain { get; set; }
     }
 
-    public class EvolutionChainLink
+    public class EvolutionChainLink_OLD
     {
         [JsonPropertyName("species")]
-        public NamedApiResource Species { get; set; }
+        public NamedApiResource_OLD Species { get; set; }
 
         [JsonPropertyName("evolves_to")]
-        public List<EvolutionChainLink> EvolvesTo { get; set; }
+        public List<EvolutionChainLink_OLD> EvolvesTo { get; set; }
 
         [JsonPropertyName("evolution_details")]
-        public List<EvolutionDetail> EvolutionDetails { get; set; }
+        public List<EvolutionDetail_OLD> EvolutionDetails { get; set; }
 
         // Detalles localizados de la especie
-        public PokemonSpecies SpeciesDetails { get; set; }
+        public PokemonSpecies_OLD SpeciesDetails { get; set; }
     }
 
-    public class PokemonSpecies
+    public class PokemonSpecies_OLD
     {
         [JsonPropertyName("id")]
         public int Id { get; set; }
@@ -372,16 +372,16 @@ namespace PKzen.Models
         public string Name { get; set; }
 
         [JsonPropertyName("names")]
-        public List<Name> Names { get; set; }
+        public List<Name_OLD> Names { get; set; }
 
         [JsonPropertyName("genera")]
-        public List<Genus> Genera { get; set; }
+        public List<Genus_OLD> Genera { get; set; }
 
         [JsonPropertyName("flavor_text_entries")]
-        public List<FlavorTextEntry> FlavorTextEntries { get; set; }
+        public List<FlavorTextEntry_OLD> FlavorTextEntries { get; set; }
 
         [JsonPropertyName("evolution_chain")]
-        public EvolutionChainReference EvolutionChainReference { get; set; }
+        public EvolutionChainReference_OLD EvolutionChainReference { get; set; }
 
         // Método para obtener el nombre localizado
         public string GetLocalizedName(string language)
@@ -402,55 +402,55 @@ namespace PKzen.Models
         }
     }
 
-    public class Genus
+    public class Genus_OLD
     {
         [JsonPropertyName("genus")]
         public string Genuss { get; set; }
 
         [JsonPropertyName("language")]
-        public NamedApiResource Language { get; set; }
+        public NamedApiResource_OLD Language { get; set; }
     }
 
-    public class FlavorTextEntry
+    public class FlavorTextEntry_OLD
     {
         [JsonPropertyName("flavor_text")]
         public string FlavorText { get; set; }
 
         [JsonPropertyName("language")]
-        public NamedApiResource Language { get; set; }
+        public NamedApiResource_OLD Language { get; set; }
 
         [JsonPropertyName("version")]
-        public NamedApiResource Version { get; set; }
+        public NamedApiResource_OLD Version { get; set; }
     }
 
-    public class EvolutionChainReference
+    public class EvolutionChainReference_OLD
     {
         [JsonPropertyName("url")]
         public string Url { get; set; }
     }
 
-    public class EvolutionDetail
+    public class EvolutionDetail_OLD
     {
         [JsonPropertyName("item")]
-        public NamedApiResource Item { get; set; }
+        public NamedApiResource_OLD Item { get; set; }
 
         [JsonPropertyName("trigger")]
-        public NamedApiResource Trigger { get; set; }
+        public NamedApiResource_OLD Trigger { get; set; }
 
         [JsonPropertyName("gender")]
         public int? Gender { get; set; }
 
         [JsonPropertyName("held_item")]
-        public NamedApiResource HeldItem { get; set; }
+        public NamedApiResource_OLD HeldItem { get; set; }
 
         [JsonPropertyName("known_move")]
-        public NamedApiResource KnownMove { get; set; }
+        public NamedApiResource_OLD KnownMove { get; set; }
 
         [JsonPropertyName("known_move_type")]
-        public NamedApiResource KnownMoveType { get; set; }
+        public NamedApiResource_OLD KnownMoveType { get; set; }
 
         [JsonPropertyName("location")]
-        public NamedApiResource Location { get; set; }
+        public NamedApiResource_OLD Location { get; set; }
 
         [JsonPropertyName("min_level")]
         public int? MinLevel { get; set; }
@@ -468,10 +468,10 @@ namespace PKzen.Models
         public bool NeedsOverworldRain { get; set; }
 
         [JsonPropertyName("party_species")]
-        public NamedApiResource PartySpecies { get; set; }
+        public NamedApiResource_OLD PartySpecies { get; set; }
 
         [JsonPropertyName("party_type")]
-        public NamedApiResource PartyType { get; set; }
+        public NamedApiResource_OLD PartyType { get; set; }
 
         [JsonPropertyName("relative_physical_stats")]
         public int? RelativePhysicalStats { get; set; }
@@ -480,7 +480,7 @@ namespace PKzen.Models
         public string TimeOfDay { get; set; }
 
         [JsonPropertyName("trade_species")]
-        public NamedApiResource TradeSpecies { get; set; }
+        public NamedApiResource_OLD TradeSpecies { get; set; }
 
         [JsonPropertyName("turn_upside_down")]
         public bool TurnUpsideDown { get; set; }
