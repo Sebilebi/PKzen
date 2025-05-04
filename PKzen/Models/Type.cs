@@ -5,6 +5,8 @@
         public int Id { get; }
         public string Name { get; }
 
+        public Type() { }
+
         public Type(int id, string name)
         {
             Id = id;

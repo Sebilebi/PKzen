@@ -11,6 +11,8 @@ namespace PKzen.Models
         private Type? _type;
         private readonly TypeDal _typeDal = new();
 
+        public DamageRelation() { }
+
         public DamageRelation(int speciesId, int typeId, double relationType)
         {
             SpeciesId = speciesId;

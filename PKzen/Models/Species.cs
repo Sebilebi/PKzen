@@ -34,6 +34,8 @@ namespace PKzen.Models
         public bool IsLegendary { get; }
         public bool IsMythical { get; }
 
+        public Species() { }
+
         public Species(int id, int baseHappiness, int captureRate, string color, string? flavorText,
                        bool formsSwitchable, int genderRate, string? genera, string? generation,
                        string? habitat, bool hasGenderDifferences, int hatchCounter,

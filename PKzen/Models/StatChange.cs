@@ -14,6 +14,8 @@ namespace PKzen.Models
         private readonly StatDal _statDal = new();
         private readonly MoveDal _moveDal = new();
 
+        public StatChange() { }
+
         public StatChange(int id, int change, int statId, int moveId)
         {
             Id = id;

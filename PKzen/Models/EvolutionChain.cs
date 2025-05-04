@@ -13,6 +13,8 @@ namespace PKzen.Models
         private readonly SpeciesDal _speciesDal = new();
         private readonly EvolutionFamilyMemberDal _memberDal = new();
 
+        public EvolutionChain() { }
+
         public EvolutionChain(int id, string? babyTriggerItem, int speciesId)
         {
             Id = id;

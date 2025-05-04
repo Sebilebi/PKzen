@@ -20,6 +20,8 @@ namespace PKzen.Models
         public int SpeciesId { get; }
         public int AbilityId { get; }
 
+        public Pokemon() { }
+
         public Pokemon(int id, string name, int baseExperience, int weight, int height,
                        bool isShiny, string? gender, int speciesId, int abilityId)
         {

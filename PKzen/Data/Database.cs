@@ -4,7 +4,7 @@ namespace PKzen.Data
 {
     public sealed class Database
     {
-        private const string CONNECTION_STRING = "Data Source=pokemon.db";
+        private const string CONNECTION_STRING = "Data Source=C:\\Users\\sebilebi\\Source\\Repos\\PKzen\\PKzen\\Resources\\PKzenDB"; // TODO: Cambiar la ruta mas adelante
         private static readonly Lazy<Database> _instance = new(() => new Database());
         private readonly SqliteConnection _connection;
 

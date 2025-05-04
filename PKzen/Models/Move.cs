@@ -33,6 +33,8 @@ namespace PKzen.Models
         private readonly PokemonDal _pokemonDal = new();
         private readonly StatChangeDal _statChangeDal = new();
 
+        public Move() { }
+
         public Move(int id, string name, int? accuracy, string? damageClass, int? effectChance,
                     string? effectText, int critRate, int drain, int flinchChance, int healing,
                     int? maxHits, int? maxTurns, int? minHits, int? minTurns, int statChance,

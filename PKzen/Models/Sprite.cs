@@ -20,6 +20,8 @@ namespace PKzen.Models
         private Species? _species;
         private readonly SpeciesDal _speciesDal = new();
 
+        public Sprite() { }
+
         public Sprite(int id, string? name, bool icon, string? backMale, string? backFemale,
                       string? backShiny, string? backShinyFemale, string? frontMale,
                       string? frontFemale, string? frontShiny, string? frontShinyFemale, int speciesId)

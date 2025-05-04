@@ -10,6 +10,8 @@ namespace PKzen.Models
         private EggGroup? _eggGroup;
         private readonly EggGroupDal _eggGroupDal = new();
 
+        public SpeciesEggGroup() { }
+
         public SpeciesEggGroup(int speciesId, int eggGroupId)
         {
             SpeciesId = speciesId;

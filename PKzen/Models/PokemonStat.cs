@@ -15,6 +15,8 @@ namespace PKzen.Models
         private readonly PokemonDal _pokemonDal = new();
         private readonly StatDal _statDal = new();
 
+        public PokemonStat() { }
+
         public PokemonStat(int id, int baseStat, int effort, int pokemonId, int statId)
         {
             Id = id;

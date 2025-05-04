@@ -19,7 +19,7 @@ namespace PKzen
             serviceCollection.AddScoped<Services.LanguageService>(); // Registrar servicio del idioma.
             serviceCollection.AddBlazorWebViewDeveloperTools(); // Configurar el entorno de desarrollo para BlazorWebView.
 
-            var dbConnection = DatabaseConnection.Instance; // Inicializar la conexión a la base de datos
+            var dbConnection = Database.Instance; // Inicializar la conexión a la base de datos
 
             Resources.Add("services", serviceCollection.BuildServiceProvider());
 

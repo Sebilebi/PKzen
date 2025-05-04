@@ -7,6 +7,8 @@
         public string? Description { get; }
         public bool IsHidden { get; }
 
+        public Ability() { }
+
         public Ability(int id, string name, string? description, bool isHidden)
         {
             Id = id;

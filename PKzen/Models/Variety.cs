@@ -12,6 +12,8 @@ namespace PKzen.Models
         private Species? _species;
         private readonly SpeciesDal _speciesDal = new();
 
+        public Variety() { }
+
         public Variety(int id, bool isDefault, string name, int speciesId)
         {
             Id = id;

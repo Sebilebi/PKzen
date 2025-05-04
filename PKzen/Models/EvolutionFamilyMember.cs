@@ -30,6 +30,8 @@ namespace PKzen.Models
         private EvolutionChain? _chain;
         private readonly EvolutionChainDal _chainDal = new();
 
+        public EvolutionFamilyMember() { }
+
         public EvolutionFamilyMember(int id, int? pokemonEvolutionId, string name, string? gender, string? heldItem,
                                      string? item, string? knownMove, string? knownMoveType, string? location,
                                      int? minAffection, int? minBeauty, int? minHappiness, int? minLevel,

@@ -12,6 +12,8 @@ namespace PKzen.Models
         private Species? _species;
         private readonly SpeciesDal _speciesDal = new();
 
+        public Cries() { }
+
         public Cries(int id, string? latest, string? legacy, int speciesId)
         {
             Id = id;

@@ -12,6 +12,8 @@ namespace PKzen.Models
         private Type? _type;
         private readonly TypeDal _typeDal = new();
 
+        public SpeciesType() { }
+
         public SpeciesType(int id, int slot, int speciesId, int typeId)
         {
             Id = id;
