@@ -1,13 +1,26 @@
-﻿namespace PKzen.Models
+﻿using PKzen.DataAccess;
+
+namespace PKzen.Models
 {
     public class EvolutionChain
     {
-        public int Id { get; set; }
-        public string BabyTriggerItem { get; set; }
-        public int SpeciesId { get; set; }
+        public int Id { get; }
+        public string? BabyTriggerItem { get; }
+        public int SpeciesId { get; }
 
-        private Lazy<List<EvolutionFamilyMember>> _members;
-        public List<EvolutionFamilyMember> Members => _members?.Value;
-        public void SetMembersLoader(Func<List<EvolutionFamilyMember>> loader) => _members = new Lazy<List<EvolutionFamilyMember>>(loader);
+        private Species? _species;
+        private IEnumerable<EvolutionFamilyMember>? _members;
+        private readonly SpeciesDal _speciesDal = new();
+        private readonly EvolutionFamilyMemberDal _memberDal = new();
+
+        public EvolutionChain(int id, string? babyTriggerItem, int speciesId)
+        {
+            Id = id;
+            BabyTriggerItem = babyTriggerItem;
+            SpeciesId = speciesId;
+        }
+
+        public Species Species => _species ??= _speciesDal.GetById(SpeciesId);
+        public IEnumerable<EvolutionFamilyMember> Members => _members ??= _memberDal.GetByChainId(Id);
     }
 }

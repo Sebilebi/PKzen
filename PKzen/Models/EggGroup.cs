@@ -2,7 +2,13 @@
 {
     public class EggGroup
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public int Id { get; }
+        public string Name { get; }
+
+        public EggGroup(int id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
     }
 }

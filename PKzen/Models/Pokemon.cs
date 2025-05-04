@@ -1,23 +1,42 @@
-﻿namespace PKzen.Models
+﻿using PKzen.DataAccess;
+
+namespace PKzen.Models
 {
     public class Pokemon
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public int BaseExperience { get; set; }
-        public int Weight { get; set; }
-        public int Height { get; set; }
-        public bool IsShiny { get; set; }
-        public string Gender { get; set; }
-        public int SpeciesId { get; set; }
-        public int AbilityId { get; set; }
+        private readonly PokemonDal _dal = new();
+        private Species? _species;
+        private Ability? _ability;
+        private IEnumerable<PokemonStat>? _stats;
+        private IEnumerable<Move>? _moves;
 
-        private Lazy<Species> _species;
-        public Species Species => _species?.Value;
-        public void SetSpeciesLoader(Func<Species> loader) => _species = new Lazy<Species>(loader);
+        public int Id { get; }
+        public string Name { get; }
+        public int BaseExperience { get; }
+        public int Weight { get; }
+        public int Height { get; }
+        public bool IsShiny { get; }
+        public string? Gender { get; }
+        public int SpeciesId { get; }
+        public int AbilityId { get; }
 
-        private Lazy<Ability> _ability;
-        public Ability Ability => _ability?.Value;
-        public void SetAbilityLoader(Func<Ability> loader) => _ability = new Lazy<Ability>(loader);
+        public Pokemon(int id, string name, int baseExperience, int weight, int height,
+                       bool isShiny, string? gender, int speciesId, int abilityId)
+        {
+            Id = id;
+            Name = name;
+            BaseExperience = baseExperience;
+            Weight = weight;
+            Height = height;
+            IsShiny = isShiny;
+            Gender = gender;
+            SpeciesId = speciesId;
+            AbilityId = abilityId;
+        }
+
+        public Species Species => _species ??= new SpeciesDal().GetById(SpeciesId);
+        public Ability Ability => _ability ??= new AbilityDal().GetById(AbilityId);
+        public IEnumerable<PokemonStat> Stats => _stats ??= new PokemonStatDal().GetByPokemonId(Id);
+        public IEnumerable<Move> Moves => _moves ??= new MoveDal().GetByPokemonId(Id);
     }
 }

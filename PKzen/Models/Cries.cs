@@ -1,13 +1,25 @@
-﻿namespace PKzen.Models
+﻿using PKzen.DataAccess;
+
+namespace PKzen.Models
 {
     public class Cries
     {
-        public int Id { get; set; }
-        public string Filename { get; set; }
-        public int SpeciesId { get; set; }
+        public int Id { get; }
+        public string? Latest { get; }
+        public string? Legacy { get; }
+        public int SpeciesId { get; }
 
-        private Lazy<Species> _species;
-        public Species Species => _species?.Value;
-        public void SetSpeciesLoader(Func<Species> loader) => _species = new Lazy<Species>(loader);
+        private Species? _species;
+        private readonly SpeciesDal _speciesDal = new();
+
+        public Cries(int id, string? latest, string? legacy, int speciesId)
+        {
+            Id = id;
+            Latest = latest;
+            Legacy = legacy;
+            SpeciesId = speciesId;
+        }
+
+        public Species Species => _species ??= _speciesDal.GetById(SpeciesId);
     }
 }

@@ -2,13 +2,17 @@
 {
     public class Ability
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public bool IsHidden { get; set; }
+        public int Id { get; }
+        public string Name { get; }
+        public string? Description { get; }
+        public bool IsHidden { get; }
 
-        private Lazy<List<Pokemon>> _pokemons;
-        public List<Pokemon> Pokemons => _pokemons?.Value;
-        public void SetPokemonsLoader(Func<List<Pokemon>> loader) => _pokemons = new Lazy<List<Pokemon>>(loader);
+        public Ability(int id, string name, string? description, bool isHidden)
+        {
+            Id = id;
+            Name = name;
+            Description = description;
+            IsHidden = isHidden;
+        }
     }
 }

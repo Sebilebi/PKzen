@@ -1,19 +1,30 @@
-﻿namespace PKzen.Models
+﻿using PKzen.DataAccess;
+
+namespace PKzen.Models
 {
     public class PokemonStat
     {
-        public int Id { get; set; }
-        public int PokemonId { get; set; }
-        public int StatId { get; set; }
-        public int BaseStat { get; set; }
-        public int Effort { get; set; }
+        public int Id { get; }
+        public int BaseStat { get; }
+        public int Effort { get; }
+        public int PokemonId { get; }
+        public int StatId { get; }
 
-        private Lazy<Pokemon> _pokemon;
-        public Pokemon Pokemon => _pokemon?.Value;
-        public void SetPokemonLoader(Func<Pokemon> loader) => _pokemon = new Lazy<Pokemon>(loader);
+        private Pokemon? _pokemon;
+        private Stat? _stat;
+        private readonly PokemonDal _pokemonDal = new();
+        private readonly StatDal _statDal = new();
 
-        private Lazy<Stat> _stat;
-        public Stat Stat => _stat?.Value;
-        public void SetStatLoader(Func<Stat> loader) => _stat = new Lazy<Stat>(loader);
+        public PokemonStat(int id, int baseStat, int effort, int pokemonId, int statId)
+        {
+            Id = id;
+            BaseStat = baseStat;
+            Effort = effort;
+            PokemonId = pokemonId;
+            StatId = statId;
+        }
+
+        public Pokemon Pokemon => _pokemon ??= _pokemonDal.GetById(PokemonId);
+        public Stat Stat => _stat ??= _statDal.GetById(StatId);
     }
 }

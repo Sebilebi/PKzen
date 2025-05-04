@@ -1,14 +1,25 @@
-﻿namespace PKzen.Models
+﻿using PKzen.DataAccess;
+
+namespace PKzen.Models
 {
     public class Variety
     {
-        public int Id { get; set; }
-        public bool IsDefault { get; set; }
-        public string Name { get; set; }
-        public int SpeciesId { get; set; }
+        public int Id { get; }
+        public bool IsDefault { get; }
+        public string Name { get; }
+        public int SpeciesId { get; }
 
-        private Lazy<Species> _species;
-        public Species Species => _species?.Value;
-        public void SetSpeciesLoader(Func<Species> loader) => _species = new Lazy<Species>(loader);
+        private Species? _species;
+        private readonly SpeciesDal _speciesDal = new();
+
+        public Variety(int id, bool isDefault, string name, int speciesId)
+        {
+            Id = id;
+            IsDefault = isDefault;
+            Name = name;
+            SpeciesId = speciesId;
+        }
+
+        public Species Species => _species ??= _speciesDal.GetById(SpeciesId);
     }
 }

@@ -1,31 +1,66 @@
-﻿namespace PKzen.Models
+﻿using PKzen.DataAccess;
+
+namespace PKzen.Models
 {
     public class Species
     {
-        public int Id { get; set; }
-        public int BaseHappiness { get; set; }
-        public int CaptureRate { get; set; }
-        public string Color { get; set; }
-        public string FlavorText { get; set; }
-        public bool FormsSwitchable { get; set; }
-        public int GenderRate { get; set; }
-        public string Genera { get; set; }
-        public string Generation { get; set; }
-        public string Habitat { get; set; }
-        public bool HasGenderDifferences { get; set; }
-        public int HatchCounter { get; set; }
-        public bool IsBaby { get; set; }
-        public string EvolutionTrigger { get; set; }
-        public bool TurnUpsideDown { get; set; }
-        public int EvolutionChainId { get; set; }
+        private readonly SpeciesEggGroupDal _eggGroupDal = new();
+        private readonly SpeciesTypeDal _typeDal = new();
+        private readonly DamageRelationDal _damageDal = new();
+        private readonly CriesDal _criesDal = new();
+        private readonly SpriteDal _spriteDal = new();
+        private readonly VarietyDal _varietyDal = new();
 
-        // Lazy-loaded navigation properties
-        private Lazy<List<Pokemon>> _pokemons;
-        public List<Pokemon> Pokemons => _pokemons?.Value;
-        public void SetPokemonsLoader(Func<List<Pokemon>> loader) => _pokemons = new Lazy<List<Pokemon>>(loader);
+        private IEnumerable<SpeciesEggGroup>? _eggGroups;
+        private IEnumerable<SpeciesType>? _types;
+        private IEnumerable<DamageRelation>? _relations;
+        private IEnumerable<Cries>? _cries;
+        private IEnumerable<Sprite>? _sprites;
+        private IEnumerable<Variety>? _varieties;
 
-        private Lazy<EvolutionChain> _evolutionChain;
-        public EvolutionChain EvolutionChain => _evolutionChain?.Value;
-        public void SetEvolutionChainLoader(Func<EvolutionChain> loader) => _evolutionChain = new Lazy<EvolutionChain>(loader);
+        public int Id { get; }
+        public int BaseHappiness { get; }
+        public int CaptureRate { get; }
+        public string Color { get; }
+        public string? FlavorText { get; }
+        public bool FormsSwitchable { get; }
+        public int GenderRate { get; }
+        public string? Genera { get; }
+        public string? Generation { get; }
+        public string? Habitat { get; }
+        public bool HasGenderDifferences { get; }
+        public int HatchCounter { get; }
+        public bool IsBaby { get; }
+        public bool IsLegendary { get; }
+        public bool IsMythical { get; }
+
+        public Species(int id, int baseHappiness, int captureRate, string color, string? flavorText,
+                       bool formsSwitchable, int genderRate, string? genera, string? generation,
+                       string? habitat, bool hasGenderDifferences, int hatchCounter,
+                       bool isBaby, bool isLegendary, bool isMythical)
+        {
+            Id = id;
+            BaseHappiness = baseHappiness;
+            CaptureRate = captureRate;
+            Color = color;
+            FlavorText = flavorText;
+            FormsSwitchable = formsSwitchable;
+            GenderRate = genderRate;
+            Genera = genera;
+            Generation = generation;
+            Habitat = habitat;
+            HasGenderDifferences = hasGenderDifferences;
+            HatchCounter = hatchCounter;
+            IsBaby = isBaby;
+            IsLegendary = isLegendary;
+            IsMythical = isMythical;
+        }
+
+        public IEnumerable<SpeciesEggGroup> EggGroups => _eggGroups ??= _eggGroupDal.GetBySpeciesId(Id);
+        public IEnumerable<SpeciesType> Types => _types ??= _typeDal.GetBySpeciesId(Id);
+        public IEnumerable<DamageRelation> DamageRelations => _relations ??= _damageDal.GetBySpeciesId(Id);
+        public IEnumerable<Cries> Cries => _cries ??= _criesDal.GetBySpeciesId(Id);
+        public IEnumerable<Sprite> Sprites => _sprites ??= _spriteDal.GetBySpeciesId(Id);
+        public IEnumerable<Variety> Varieties => _varieties ??= _varietyDal.GetBySpeciesId(Id);
     }
 }

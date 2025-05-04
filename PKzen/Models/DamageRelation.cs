@@ -1,17 +1,23 @@
-﻿namespace PKzen.Models
+﻿using PKzen.DataAccess;
+
+namespace PKzen.Models
 {
     public class DamageRelation
     {
-        public int SpeciesId { get; set; }
-        public int TypeId { get; set; }
-        public double RelationType { get; set; }
+        public int SpeciesId { get; }
+        public int TypeId { get; }
+        public double RelationType { get; }
 
-        private Lazy<Species> _species;
-        public Species Species => _species?.Value;
-        public void SetSpeciesLoader(Func<Species> loader) => _species = new Lazy<Species>(loader);
+        private Type? _type;
+        private readonly TypeDal _typeDal = new();
 
-        private Lazy<Type> _type;
-        public Type Type => _type?.Value;
-        public void SetTypeLoader(Func<Type> loader) => _type = new Lazy<Type>(loader);
+        public DamageRelation(int speciesId, int typeId, double relationType)
+        {
+            SpeciesId = speciesId;
+            TypeId = typeId;
+            RelationType = relationType;
+        }
+
+        public Type Type => _type ??= _typeDal.GetById(TypeId);
     }
 }

@@ -1,18 +1,28 @@
-﻿namespace PKzen.Models
+﻿using PKzen.DataAccess;
+
+namespace PKzen.Models
 {
     public class StatChange
     {
-        public int Id { get; set; }
-        public int Change { get; set; }
-        public int StatId { get; set; }
-        public int MoveId { get; set; }
+        public int Id { get; }
+        public int Change { get; }
+        public int StatId { get; }
+        public int MoveId { get; }
 
-        private Lazy<Stat> _stat;
-        public Stat Stat => _stat?.Value;
-        public void SetStatLoader(Func<Stat> loader) => _stat = new Lazy<Stat>(loader);
+        private Stat? _stat;
+        private IEnumerable<StatChange>? _null;
+        private readonly StatDal _statDal = new();
+        private readonly MoveDal _moveDal = new();
 
-        private Lazy<Move> _move;
-        public Move Move => _move?.Value;
-        public void SetMoveLoader(Func<Move> loader) => _move = new Lazy<Move>(loader);
+        public StatChange(int id, int change, int statId, int moveId)
+        {
+            Id = id;
+            Change = change;
+            StatId = statId;
+            MoveId = moveId;
+        }
+
+        public Stat Stat => _stat ??= _statDal.GetById(StatId);
+        public Move Move => _moveDal.GetById(MoveId);
     }
 }

@@ -1,18 +1,25 @@
-﻿namespace PKzen.Models
+﻿using PKzen.DataAccess;
+
+namespace PKzen.Models
 {
     public class SpeciesType
     {
-        public int Id { get; set; }
-        public int Slot { get; set; }
-        public int SpeciesId { get; set; }
-        public int TypeId { get; set; }
+        public int Id { get; }
+        public int Slot { get; }
+        public int SpeciesId { get; }
+        public int TypeId { get; }
 
-        private Lazy<Species> _species;
-        public Species Species => _species?.Value;
-        public void SetSpeciesLoader(Func<Species> loader) => _species = new Lazy<Species>(loader);
+        private Type? _type;
+        private readonly TypeDal _typeDal = new();
 
-        private Lazy<Type> _type;
-        public Type Type => _type?.Value;
-        public void SetTypeLoader(Func<Type> loader) => _type = new Lazy<Type>(loader);
+        public SpeciesType(int id, int slot, int speciesId, int typeId)
+        {
+            Id = id;
+            Slot = slot;
+            SpeciesId = speciesId;
+            TypeId = typeId;
+        }
+
+        public Type Type => _type ??= _typeDal.GetById(TypeId);
     }
 }

@@ -1,17 +1,21 @@
-﻿namespace PKzen.Models
+﻿using PKzen.DataAccess;
+
+namespace PKzen.Models
 {
     public class SpeciesEggGroup
     {
-        public int Id { get; set; }
-        public int SpeciesId { get; set; }
-        public int EggGroupId { get; set; }
+        public int SpeciesId { get; }
+        public int EggGroupId { get; }
 
-        private Lazy<Species> _species;
-        public Species Species => _species?.Value;
-        public void SetSpeciesLoader(Func<Species> loader) => _species = new Lazy<Species>(loader);
+        private EggGroup? _eggGroup;
+        private readonly EggGroupDal _eggGroupDal = new();
 
-        private Lazy<EggGroup> _eggGroup;
-        public EggGroup EggGroup => _eggGroup?.Value;
-        public void SetEggGroupLoader(Func<EggGroup> loader) => _eggGroup = new Lazy<EggGroup>(loader);
+        public SpeciesEggGroup(int speciesId, int eggGroupId)
+        {
+            SpeciesId = speciesId;
+            EggGroupId = eggGroupId;
+        }
+
+        public EggGroup EggGroup => _eggGroup ??= _eggGroupDal.GetById(EggGroupId);
     }
 }
