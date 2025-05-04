@@ -4,11 +4,15 @@ namespace PKzen.Models
 {
     public class Pokemon
     {
-        private readonly PokemonDal _dal = new();
-        private Species? _species;
-        private Ability? _ability;
+        private readonly SpeciesDal _speciesDal = new();
+        private readonly PokemonAbilityDal _pokemonAbilityDal = new();
+        private readonly PokemonStatDal _pokemonStatDal = new();
+        private readonly MoveDal _moveDal = new();
+
+        private IEnumerable<PokemonAbility>? _pokemonAbilities;
         private IEnumerable<PokemonStat>? _stats;
         private IEnumerable<Move>? _moves;
+        private Species? _species;
 
         public int Id { get; }
         public string Name { get; }
@@ -18,27 +22,25 @@ namespace PKzen.Models
         public bool IsShiny { get; }
         public string? Gender { get; }
         public int SpeciesId { get; }
-        public int AbilityId { get; }
 
         public Pokemon() { }
 
-        public Pokemon(int id, string name, int baseExperience, int weight, int height,
-                       bool isShiny, string? gender, int speciesId, int abilityId)
+        public Pokemon(int id, string name, int baseExp, int weight, int height, bool shiny, string? gender, int speciesId)
         {
             Id = id;
             Name = name;
-            BaseExperience = baseExperience;
+            BaseExperience = baseExp;
             Weight = weight;
             Height = height;
-            IsShiny = isShiny;
+            IsShiny = shiny;
             Gender = gender;
             SpeciesId = speciesId;
-            AbilityId = abilityId;
         }
 
-        public Species Species => _species ??= new SpeciesDal().GetById(SpeciesId);
-        public Ability Ability => _ability ??= new AbilityDal().GetById(AbilityId);
-        public IEnumerable<PokemonStat> Stats => _stats ??= new PokemonStatDal().GetByPokemonId(Id);
-        public IEnumerable<Move> Moves => _moves ??= new MoveDal().GetByPokemonId(Id);
+        public Species Species => _species ??= _speciesDal.GetById(SpeciesId);
+        public IEnumerable<PokemonAbility> PokemonAbilities => _pokemonAbilities ??= _pokemonAbilityDal.GetByPokemonId(Id);
+        public IEnumerable<Ability> Abilities => PokemonAbilities.Select(pa => pa.Ability);
+        public IEnumerable<PokemonStat> Stats => _stats ??= _pokemonStatDal.GetByPokemonId(Id);
+        public IEnumerable<Move> Moves => _moves ??= _moveDal.GetByPokemonId(Id);
     }
 }

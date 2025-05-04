@@ -14,9 +14,6 @@ namespace PKzen
         {
             var serviceCollection = new ServiceCollection();
             serviceCollection.AddWpfBlazorWebView();
-            serviceCollection.AddScoped(sp => new HttpClient()); // Registrar HttpClient.
-            serviceCollection.AddScoped<Services.PokeApiService>(); // Registrar servicio de la PokeApi.
-            serviceCollection.AddScoped<Services.LanguageService>(); // Registrar servicio del idioma.
             serviceCollection.AddBlazorWebViewDeveloperTools(); // Configurar el entorno de desarrollo para BlazorWebView.
 
             var dbConnection = Database.Instance; // Inicializar la conexión a la base de datos

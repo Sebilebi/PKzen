@@ -1,39 +1,29 @@
-﻿@using PKzen.Models
-@using PKzen.Models.OLD
-@using PKzen.Services
-@inject LanguageService LanguageService
+﻿@using System.Linq
+@using PKzen.Models
 
 <div @onclick="HandleClick" class="poke-card @(IsSelected ? "selected" : "")">
-    <img src="@Pokemon.ImageUrl" alt="@Pokemon.SpeciesDetails.GetLocalizedName(LanguageService.CurrentLanguage)" />
-    <h3>@Pokemon.SpeciesDetails.GetLocalizedName(LanguageService.CurrentLanguage)</h3>
+    <img src="@(Pokemon.Species.Sprites.FirstOrDefault(s => s.Name == "black_white")?.FrontMale)"alt="@Pokemon.Name" />
+
+    <h3>@Pokemon.Name</h3>
+
     <div class="type-icons">
-        @foreach (var type in Pokemon.Types)
+        @foreach (var type in Pokemon.Species.Types)
         {
-            <img src="@type.Details.TypeSprite"
-                 alt="@type.Details.GetLocalizedName(LanguageService.CurrentLanguage)"
-                 title="@type.Details.GetLocalizedName(LanguageService.CurrentLanguage)"
-                 class="type-icon" />
+            <img src="@type.Type.Name" alt="@type.Type.Name" class="type-icon" />
         }
     </div>
 </div>
 
 @code {
     [Parameter]
-    public Pokemon_OLD Pokemon { get; set; }
+    public Pokemon Pokemon { get; set; }
 
     [Parameter]
-    public EventCallback<Pokemon_OLD> OnClick { get; set; }
+    public EventCallback<Pokemon> OnClick { get; set; }
 
     [Parameter]
     public bool IsSelected { get; set; }
 
-    protected override void OnInitialized()
-    {
-        LanguageService.LanguageChanged += (sender, language) => StateHasChanged();
-    }
-
     private async Task HandleClick()
-    {
-        await OnClick.InvokeAsync(Pokemon);
-    }
+        => await OnClick.InvokeAsync(Pokemon);
 }

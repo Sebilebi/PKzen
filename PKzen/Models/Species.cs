@@ -10,7 +10,9 @@ namespace PKzen.Models
         private readonly CriesDal _criesDal = new();
         private readonly SpriteDal _spriteDal = new();
         private readonly VarietyDal _varietyDal = new();
+        private readonly EvolutionChainDal _evolutionChainDal = new();
 
+        private IEnumerable<EvolutionChain>? _evolutionChains;
         private IEnumerable<SpeciesEggGroup>? _eggGroups;
         private IEnumerable<SpeciesType>? _types;
         private IEnumerable<DamageRelation>? _relations;
@@ -58,6 +60,7 @@ namespace PKzen.Models
             IsMythical = isMythical;
         }
 
+        public IEnumerable<EvolutionChain> EvolutionChains => _evolutionChains ??= _evolutionChainDal.GetBySpeciesId(Id);
         public IEnumerable<SpeciesEggGroup> EggGroups => _eggGroups ??= _eggGroupDal.GetBySpeciesId(Id);
         public IEnumerable<SpeciesType> Types => _types ??= _typeDal.GetBySpeciesId(Id);
         public IEnumerable<DamageRelation> DamageRelations => _relations ??= _damageDal.GetBySpeciesId(Id);

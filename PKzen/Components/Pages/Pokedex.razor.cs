@@ -1,29 +1,26 @@
-﻿using Microsoft.AspNetCore.Components;
-using PKzen.Models.OLD;
-using PKzen.Services;
+﻿using PKzen.DataAccess;
+using PKzen.Models;
 
 namespace PKzen.Components.Pages
 {
-    public partial class Pokedex : ComponentBase
+    public partial class Pokedex
     {
-        [Inject]
-        private PokeApiService PokeService { get; set; }
-        private List<Pokemon_OLD> pokemons;
-        public Pokemon_OLD? SelectedPokemon { get; set; } = null;
+        private List<Pokemon> pokemons;
+        public Pokemon? SelectedPokemon { get; set; } = null;
 
         protected override async Task OnInitializedAsync()
         {
-            pokemons = await PokeService.GetFirst20PokemonAsync();
+            var pokemonDal = new PokemonDal();
+            pokemons = pokemonDal.GetAll().ToList();
         }
 
-        private void OnPokemonSelected(Pokemon_OLD pokemon)
+        private void OnPokemonSelected(Pokemon pokemon)
         {
             if (pokemon == null)
                 return;
 
             SelectedPokemon = pokemon;
         }
-
 
         private void CloseDetails()
         {

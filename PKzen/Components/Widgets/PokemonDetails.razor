@@ -1,7 +1,4 @@
 ﻿@using PKzen.Models
-@using PKzen.Models.OLD
-@using PKzen.Services
-@inject LanguageService LanguageService
 
 <div class="pokemon-detail-card">
     <!-- Close button -->
@@ -15,16 +12,13 @@
 
     <div class="pokemon-detail-card-header">
         <div class="pokemon-number">#@Pokemon.Id</div>
-        <img src="@Pokemon.ImageUrlOfficial" alt="@Pokemon.SpeciesDetails.GetLocalizedName(LanguageService.CurrentLanguage)" class="pokemon-img">
-        <h1 class="pokemon-name">@Pokemon.SpeciesDetails.GetLocalizedName(LanguageService.CurrentLanguage)</h1>
-        <p class="pokemon-title">@Pokemon.SpeciesDetails.GetLocalizedGenus(LanguageService.CurrentLanguage)</p>
+        <img src="@(Pokemon.Species.Sprites.FirstOrDefault(s => s.Name == "black_white_animated")?.FrontMale)" alt="@Pokemon.Name" class="pokemon-img">
+        <h1 class="pokemon-name">@Pokemon.Name</h1>
+        <p class="pokemon-title">@Pokemon.Species.Genera</p>
         <div class="type-icons">
-            @foreach (var type in Pokemon.Types)
+            @foreach (var type in Pokemon.Species.Types)
             {
-                <img src="@type.Details.TypeSprite"
-                     alt="@type.Details.GetLocalizedName(LanguageService.CurrentLanguage)"
-                     title="@type.Details.GetLocalizedName(LanguageService.CurrentLanguage)"
-                     class="type-icon" />
+                <img src="@type.Type.Name" alt="@type.Type.Name" class="type-icon" />
             }
         </div>
     </div>
@@ -34,7 +28,7 @@
         <div class="abilities">
             @foreach (var ability in Pokemon.Abilities)
             {
-                <div class="ability">@ability.Details.GetLocalizedName(LanguageService.CurrentLanguage)</div>
+                <div class="ability">@ability.Name</div>
             }
         </div>
     </div>
@@ -49,12 +43,11 @@
     <div class="pokemon-detail-card-section">
         <h2 class="section-title">ESTADÍSTICAS</h2>
         <div class="stats-container">
-            @for (int i = 0; i < Pokemon.Stats.Count; i++)
+            @foreach (var stat in Pokemon.Stats)
             {
-                var stat = Pokemon.Stats[i];
-                var (percentage, color) = GetStatPercentageAndColor(i, stat.BaseStat);
+                var (percentage, color) = GetStatPercentageAndColor(stat.BaseStat);
                 <div class="stat-row">
-                    <div class="stat-name">@stat.Details.GetLocalizedName(LanguageService.CurrentLanguage)</div>
+                    <div class="stat-name">@stat.Stat.Name</div>
                     <div class="stat-bar-container">
                         <div class="stat-bar" style="width: @percentage%; background-color: @color;"></div>
                     </div>
@@ -64,7 +57,7 @@
         </div>
     </div>
 
-    <div class="pokemon-detail-card-section">
+@*     <div class="pokemon-detail-card-section">
         <h2 class="section-title">EVOLUCIÓN</h2>
         <div class="evolution-chain">
             @if (Pokemon.EvolutionChain?.Chain != null)
@@ -85,7 +78,7 @@
                 }
             }
         </div>
-    </div>
+    </div> *@
 
     <div class="navigation">
         <div class="nav-button">
@@ -99,7 +92,7 @@
 
 @code {
     [Parameter]
-    public Pokemon_OLD Pokemon { get; set; }
+    public Pokemon Pokemon { get; set; }
 
     [Parameter]
     public EventCallback OnClose { get; set; }

@@ -8,13 +8,16 @@ namespace PKzen.DataAccess
 
         public override Pokemon GetById(int id)
             => QuerySingle<Pokemon>(
-                $"SELECT Id, Name, BaseExperience, Weight, Height, IsShiny, Gender, SpeciesId, AbilityId FROM {TABLE} WHERE Id = @Id",
+                $"SELECT Id, Name, BaseExperience, Weight, Height, IsShiny, Gender, SpeciesId FROM {TABLE} WHERE Id = @Id",
                 new { Id = id })!;
 
         public override IEnumerable<Pokemon> GetAll()
-            => Query<Pokemon>($"SELECT * FROM {TABLE}");
+            => Query<Pokemon>(
+                $"SELECT Id, Name, BaseExperience, Weight, Height, IsShiny, Gender, SpeciesId FROM {TABLE}");
 
         public IEnumerable<Pokemon> GetBySpeciesId(int speciesId)
-            => Query<Pokemon>($"SELECT * FROM {TABLE} WHERE SpeciesId = @SpeciesId", new { SpeciesId = speciesId });
+            => Query<Pokemon>(
+                $"SELECT * FROM {TABLE} WHERE SpeciesId = @Sid",
+                new { Sid = speciesId });
     }
 }
