@@ -35,6 +35,13 @@
     box-shadow: var(--shadow-action-neon);
 }
 
+.type-icon-container {
+    position: relative;
+    display: inline-block;
+    margin: 5px;
+    justify-content: center;
+}
+
 .type-icons {
     display: flex;
     justify-content: center;
@@ -46,3 +53,17 @@
         height: 20px;
         object-fit: scale-down;
     }
+
+.type-card {
+    width: 100px;
+    height: 25px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    text-transform: capitalize;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}

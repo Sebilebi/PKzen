@@ -9,7 +9,12 @@
     <div class="type-icons">
         @foreach (var type in Pokemon.Species.Types)
         {
-            <img src="@type.Type.Name" alt="@type.Type.Name" class="type-icon" />
+            var typeColor = PKzen.Models.Type.GetTypeColor(type.Type.Id);
+            <div class="type-icon-container">
+                <img src="@type.Type.Name" alt="@type.Type.Name" class="type-icon"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                <div class="type-card" style="display: none; background-color: @typeColor;">@type.Type.Name</div>
+            </div>
         }
     </div>
 </div>
