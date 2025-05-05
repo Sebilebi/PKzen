@@ -57,28 +57,58 @@
         </div>
     </div>
 
-@*     <div class="pokemon-detail-card-section">
+    <div class="pokemon-detail-card-section">
         <h2 class="section-title">EVOLUCIÓN</h2>
-        <div class="evolution-chain">
-            @if (Pokemon.EvolutionChain?.Chain != null)
-            {
-                @foreach (var stage in GetEvolutionStages(Pokemon.EvolutionChain.Chain))
+        @if (Pokemon.Species.EvolutionChains.FirstOrDefault() is var chain && chain != null)
+        {
+            var evolvable = chain.Members
+                                 .Where(m => m.MinLevel.HasValue && m.MinLevel.Value > 0)
+                                 .OrderBy(m => m.MinLevel.Value)
+                                 .ToList();
+            var finals = chain.Members
+                              .Where(m => !m.MinLevel.HasValue || m.MinLevel.Value == 0)
+                              .ToList();
+            var stages = evolvable.Concat(finals).ToList();
+
+            <div class="evolution-chain">
+                @for (int i = 0; i < stages.Count; i++)
                 {
+                    var m = stages[i];
+                    var isActive = string.Equals(m.Name, Pokemon.Name, StringComparison.OrdinalIgnoreCase);
+
+                    <!-- Etapa evolutiva -->
                     <div class="evolution-stage">
-                        <div class="evolution-img">
-                            <div class="evolution-sprite">@stage.Name[0]</div>
-                        </div>
-                        <div class="evolution-name">@stage.Name</div>
-                        <div class="evolution-level">@stage.Level</div>
+                        <img src="@GetPokemonsSpriteByName(m.Name, "black_white")" alt="@m.Name" class="evolution-img @(isActive ? "active" : "")" />
+                        <div class="evolution-name">@m.Name</div>
                     </div>
-                    @if (stage != GetEvolutionStages(Pokemon.EvolutionChain.Chain).Last())
+
+                    @if (i < stages.Count - 1)
                     {
-                        <div class="evolution-arrow">›</div>
+                        <div class="evolution-arrow-block">
+                            <div class="evolution-arrow">→</div>
+                            @* Método de evolución *@
+                            @if (m.MinLevel.HasValue && m.MinLevel.Value > 0)
+                            {
+                                <div class="evolution-level">Lv. @m.MinLevel</div>
+                            }
+                            else if (!string.IsNullOrEmpty(m.Item))
+                            {
+                                <div class="evolution-level">@m.Item</div>
+                            }
+                            else if (!string.IsNullOrEmpty(m.EvolutionTrigger))
+                            {
+                                <div class="evolution-level">@m.EvolutionTrigger</div>
+                            }
+                        </div>
                     }
                 }
-            }
-        </div>
-    </div> *@
+            </div>
+        }
+        else
+        {
+            <p>Este Pokémon no tiene cadena evolutiva registrada.</p>
+        }
+    </div>
 
     <div class="navigation">
         <div class="nav-button">
