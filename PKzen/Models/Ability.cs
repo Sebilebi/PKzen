@@ -4,15 +4,16 @@ namespace PKzen.Models
 {
     public class Ability
     {
-        private readonly PokemonAbilityDal _pokemonAbilityDal = new();
-
         public int Id { get; }
         public string Name { get; }
         public string? Description { get; }
         public bool IsHidden { get; }
         public bool IsSelected { get; }
 
-        private IEnumerable<PokemonAbility>? _pokemonAbilities;
+        private IEnumerable<SpeciesAbility>? _speciesAbilities;
+
+        private readonly SpeciesAbilityDal _speciesAbilityDal = new();
+        private readonly PokemonDal _pokemonDal = new();
 
         public Ability() { }
 
@@ -25,7 +26,8 @@ namespace PKzen.Models
             IsSelected = isSelected;
         }
 
-        public IEnumerable<PokemonAbility> PokemonAbilities => _pokemonAbilities ??= _pokemonAbilityDal.GetByAbilityId(Id);
-        public IEnumerable<Pokemon> Pokemons => PokemonAbilities.Select(pa => pa.Pokemon);
+        public IEnumerable<SpeciesAbility> SpeciesAbilities => _speciesAbilities ??= _speciesAbilityDal.GetByAbilityId(Id);
+        public IEnumerable<Species> Species => SpeciesAbilities.Select(sa => sa.Species);
+        public IEnumerable<Pokemon> Pokemons => Species.SelectMany(s => _pokemonDal.GetBySpeciesId(s.Id));
     }
 }

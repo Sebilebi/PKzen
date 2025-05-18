@@ -22,7 +22,7 @@ namespace PKzen.DataAccess
 
         public IEnumerable<Pokemon> GetBySpeciesId(int speciesId)
             => Query<Pokemon>(
-                $"SELECT * FROM {TABLE} WHERE SpeciesId = @Sid",
+                $"SELECT Id, Name, BaseExperience, Weight, Height, IsShiny, Gender, SpeciesId FROM {TABLE} WHERE SpeciesId = @Sid",
                 new { Sid = speciesId });
     }
 }

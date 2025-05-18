@@ -6,7 +6,6 @@ namespace PKzen.Models
     {
         public int Id { get; }
         public int? PokemonEvolutionId { get; }
-        public string Name { get; }
         public string? Gender { get; }
         public string? HeldItem { get; }
         public string? Item { get; }
@@ -28,11 +27,12 @@ namespace PKzen.Models
         public int EvolutionChainId { get; }
 
         private EvolutionChain? _chain;
+
         private readonly EvolutionChainDal _chainDal = new();
 
         public EvolutionFamilyMember() { }
 
-        public EvolutionFamilyMember(int id, int? pokemonEvolutionId, string name, string? gender, string? heldItem,
+        public EvolutionFamilyMember(int id, int? pokemonEvolutionId, string? gender, string? heldItem,
                                      string? item, string? knownMove, string? knownMoveType, string? location,
                                      int? minAffection, int? minBeauty, int? minHappiness, int? minLevel,
                                      bool needsOverworldRain, string? partySpecies, string? partyType,
@@ -41,7 +41,6 @@ namespace PKzen.Models
         {
             Id = id;
             PokemonEvolutionId = pokemonEvolutionId;
-            Name = name;
             Gender = gender;
             HeldItem = heldItem;
             Item = item;

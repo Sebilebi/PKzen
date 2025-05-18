@@ -31,9 +31,9 @@
     <div class="pokemon-detail-card-section">
         <h2 class="section-title">HABILIDADES</h2>
         <div class="abilities">
-            @foreach (var ability in Pokemon.Abilities)
+            @foreach (var speciesAbility in Pokemon.Species.Abilities)
             {
-                <div class="ability">@ability.Name</div>
+                <div class="ability">@speciesAbility.Ability.Name</div>
             }
         </div>
     </div>
@@ -79,12 +79,17 @@
                 @for (int i = 0; i < stages.Count; i++)
                 {
                     var m = stages[i];
-                    var isActive = string.Equals(m.Name, Pokemon.Name, StringComparison.OrdinalIgnoreCase);
+                    var isActive = m.PokemonEvolutionId.HasValue && m.PokemonEvolutionId.Value == Pokemon.Id;
 
                     <!-- Etapa evolutiva -->
                     <div class="evolution-stage">
-                        <img src="@GetPokemonsSpriteByName(m.Name, "black_white")" alt="@m.Name" class="evolution-img @(isActive ? "active" : "")" />
-                        <div class="evolution-name">@m.Name</div>
+                        @if (m.PokemonEvolutionId.HasValue)
+                        {
+                            var pokemonDal = new PKzen.DataAccess.PokemonDal();
+                            var evoPokemon = pokemonDal.GetById(m.PokemonEvolutionId.Value);
+                            <img src="@GetPokemonSprite(evoPokemon, "black_white")" alt="@evoPokemon.Name" class="evolution-img @(isActive ? "active" : "")" />
+                            <div class="evolution-name">@evoPokemon.Name</div>
+                        }
                     </div>
 
                     @if (i < stages.Count - 1)

@@ -2,7 +2,7 @@
 @using PKzen.Models
 
 <div @onclick="HandleClick" class="poke-card @(IsSelected ? "selected" : "")">
-    <img src="@(Pokemon.Species.Sprites.FirstOrDefault(s => s.Name == "black_white")?.FrontMale)"alt="@Pokemon.Name" />
+    <img src="@(Pokemon.Species.Sprites.FirstOrDefault(s => s.Name == "black_white")?.FrontMale)" alt="@Pokemon.Name" />
 
     <h3>@Pokemon.Name</h3>
 

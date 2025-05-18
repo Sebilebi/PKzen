@@ -4,22 +4,6 @@ namespace PKzen.Models
 {
     public class Species
     {
-        private readonly SpeciesEggGroupDal _eggGroupDal = new();
-        private readonly SpeciesTypeDal _typeDal = new();
-        private readonly DamageRelationDal _damageDal = new();
-        private readonly CriesDal _criesDal = new();
-        private readonly SpriteDal _spriteDal = new();
-        private readonly VarietyDal _varietyDal = new();
-        private readonly EvolutionChainDal _evolutionChainDal = new();
-
-        private IEnumerable<EvolutionChain>? _evolutionChains;
-        private IEnumerable<SpeciesEggGroup>? _eggGroups;
-        private IEnumerable<SpeciesType>? _types;
-        private IEnumerable<DamageRelation>? _relations;
-        private IEnumerable<Cries>? _cries;
-        private IEnumerable<Sprite>? _sprites;
-        private IEnumerable<Variety>? _varieties;
-
         public int Id { get; }
         public int BaseHappiness { get; }
         public int CaptureRate { get; }
@@ -35,6 +19,24 @@ namespace PKzen.Models
         public bool IsBaby { get; }
         public bool IsLegendary { get; }
         public bool IsMythical { get; }
+
+        private IEnumerable<EvolutionChain>? _evolutionChains;
+        private IEnumerable<SpeciesEggGroup>? _eggGroups;
+        private IEnumerable<SpeciesType>? _types;
+        private IEnumerable<DamageRelation>? _relations;
+        private IEnumerable<Cries>? _cries;
+        private IEnumerable<Sprite>? _sprites;
+        private IEnumerable<Variety>? _varieties;
+        private IEnumerable<SpeciesAbility>? _abilities;
+
+        private readonly SpeciesEggGroupDal _eggGroupDal = new();
+        private readonly SpeciesTypeDal _typeDal = new();
+        private readonly DamageRelationDal _damageDal = new();
+        private readonly CriesDal _criesDal = new();
+        private readonly SpriteDal _spriteDal = new();
+        private readonly VarietyDal _varietyDal = new();
+        private readonly EvolutionChainDal _evolutionChainDal = new();
+        private readonly SpeciesAbilityDal _speciesAbilityDal = new();
 
         public Species() { }
 
@@ -67,5 +69,6 @@ namespace PKzen.Models
         public IEnumerable<Cries> Cries => _cries ??= _criesDal.GetBySpeciesId(Id);
         public IEnumerable<Sprite> Sprites => _sprites ??= _spriteDal.GetBySpeciesId(Id);
         public IEnumerable<Variety> Varieties => _varieties ??= _varietyDal.GetBySpeciesId(Id);
+        public IEnumerable<SpeciesAbility> Abilities => _abilities ??= _speciesAbilityDal.GetBySpeciesId(Id);
     }
 }

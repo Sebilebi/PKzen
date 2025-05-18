@@ -1,5 +1,5 @@
 ﻿using System.Globalization;
-using PKzen.DataAccess;
+using PKzen.Models;
 
 namespace PKzen.Components.Widgets
 {
@@ -28,11 +28,8 @@ namespace PKzen.Components.Widgets
             return (formattedPercentage, color);
         }
 
-        private string? GetPokemonsSpriteByName(string pokemonName, string spriteName)
+        private string? GetPokemonSprite(Pokemon pokemon, string spriteName)
         {
-            var pokemonDal = new PokemonDal();
-            var pokemon = pokemonDal.GetByName(pokemonName);
-
             return pokemon.Species.Sprites.FirstOrDefault(s => s.Name == spriteName)?.FrontMale;
         }
     }

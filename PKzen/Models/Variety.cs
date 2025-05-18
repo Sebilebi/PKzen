@@ -6,19 +6,18 @@ namespace PKzen.Models
     {
         public int Id { get; }
         public bool IsDefault { get; }
-        public string Name { get; }
         public int SpeciesId { get; }
 
         private Species? _species;
+
         private readonly SpeciesDal _speciesDal = new();
 
         public Variety() { }
 
-        public Variety(int id, bool isDefault, string name, int speciesId)
+        public Variety(int id, bool isDefault, int speciesId)
         {
             Id = id;
             IsDefault = isDefault;
-            Name = name;
             SpeciesId = speciesId;
         }
 
